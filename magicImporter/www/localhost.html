@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Magic card search engine</title>
+
+  <script type="text/javascript" src="vendor/jquery/1.7.1/jquery-1.7.1.min.js"></script>
+
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>  
+
+  <script type="text/javascript" src="vendor/linkify/1.0/jquery.linkify-1.0-min.js"></script>  
+  
+  <link rel="stylesheet" href="vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.css">
+  <script type="text/javascript" src="vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.min.js"></script>
+
+  <script type="text/javascript" src="jquery.facetview.js"></script>
+
+  <link rel="stylesheet" href="css/facetview.css">
+
+  <script type="text/javascript">
+jQuery(document).ready(function($) {
+  $('.facet-view-simple').each(function() {
+  $(this).facetview({
+    //search_url: 'http://card-search.gstraymond.fr:8080/magic/card/_search?',
+    search_url: 'http://localhost:9200/magic/card/_search?',
+    search_index: 'magic',
+    datatype: 'json',
+    facets: [
+        {'field': 'colors', 'display': 'Color'},
+        {'field': 'type', 'display': 'Type'},
+        {'field': 'convertedManaCost', 'display': 'Converted mana cost'},
+        {'field': 'abilities.exact', 'display': 'Abilities'},
+        {'field': 'power', 'display': 'Power'},
+        {'field': 'toughness', 'display': 'Toughness'},
+        {'field': 'rarities', 'display': 'Rarity'},
+        {'field': 'editions.exact', 'display': 'Edition'},
+        {'field': 'priceRanges.exact', 'display': 'Price'},
+    ],
+    search_sortby: [
+       	{'display':'Title', 'field':'title.exact'},
+       	{'display':'Power', 'field':'power'},
+       	{'display':'Toughness', 'field':'toughness'},
+       	{'display':'Converted mana cost', 'field':'convertedManaCost'},
+    ],
+    searchbox_fieldselect: [
+		{'display':'Title','field':'title'},
+		{'display':'Description','field':'description'}
+	],
+    paging: { size: 10 },
+    default_operator: "AND",
+    //default_freetext_fuzzify: "*",
+    result_display: [
+		[
+	 	    {
+	 	        "pre": "<code>",
+ 	        	"field": "castingCost",
+	 	        "post": "</code>&nbsp"
+ 	    	},
+	 	    {
+	 	        "pre": "<strong>",
+	 	        "field": "title",
+	 	        "post": "</strong>"
+	 	    }
+ 	    ],
+ 	    [
+	 	    {
+	        	"field": "type",
+	    	},
+	 	    {
+	 	    	"pre": "&ndash; <strong>",
+	        	"field": "power",
+	 	        "post": " / "
+	    	},
+	 	    {
+	        	"field": "toughness",
+	        	"post": "</strong>"
+	    	},
+	    ],
+ 	    [
+	 	    {
+	 	        "pre": "<pre>",
+	        	"field": "description",
+	 	        "post": "</pre>"
+	    	},
+	    ],
+ 	    [
+ 	 	    {
+	 	        "pre": "<div class='publications'>",
+	        	"field": "publications",
+	 	        "post": "</div>"
+	    	}
+	    ]
+     ]
+  });
+  });
+});
+  </script>
+
+<style type="text/css">
+.facet-view-simple{
+    width:800px;
+    height:600px;
+    margin:20px auto 0 auto;
+}
+.publications {
+	clear: both;
+}
+</style>
+
+</head>
+<body>
+
+    <div class="facet-view-simple"></div>
+
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+	/*
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36595811-2']);
+	  _gaq.push(['_trackPageview']);
+	
+	(function() {
+	   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	 })();
+ 	*/
+	</script>
+</body>
+</html>
