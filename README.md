@@ -1,0 +1,4 @@
+magic
+=====
+
+Card databse indexer
