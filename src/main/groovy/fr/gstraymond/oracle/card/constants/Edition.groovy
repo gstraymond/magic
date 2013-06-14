@@ -22,7 +22,7 @@ class Edition {
 		AN: 'Arabian_Nights',
 		AQ: 'Antiquities',
 		LE: 'Legends',
-		DK: 'The_Dark',
+		DK: 'The Dark',
 		FE: 'Fallen Empires',
 		HL: 'Homelands',
 		// Ice Age block
