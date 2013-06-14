@@ -1,4 +1,4 @@
-package fr.gstraymond.es
+package fr.gstraymond.elasticsearch
 
 import java.text.Normalizer;
 

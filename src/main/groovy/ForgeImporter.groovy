@@ -1,6 +1,5 @@
 import java.util.zip.ZipFile
-
-import fr.gstraymond.es.ESIndexer
+import fr.gstraymond.elasticsearch.ESIndexer
 import fr.gstraymond.forge.converter.CardConverter
 import fr.gstraymond.forge.converter.FileConverter
 import fr.gstraymond.forge.converter.RawCardConverter
@@ -20,33 +19,11 @@ def cards = fileConverter.parse().collect {
 	def cardConverter = new CardConverter(rawCard: rawCard, pricesAsMap: priceMap) 
 	cardConverter.parse()
 }
-
-// remove null elements and empty elements
-cards = cards.findAll {	it && it.title }
 println "$cards.size parsed in ${System.currentTimeMillis() - now}ms."
 
-def enableDebug = false
-def enableIndex = false
-def clearConfigure = true
-
-if (enableDebug) {
-	cards.each {
-		println '----'
-		println it?.title
-		println it?.editions
-		println it?.priceRanges
-		println it?.publications
-	}
-}
-
-if (enableIndex || clearConfigure) {
-	def indexer = new ESIndexer()
-	indexer.clear()
-	indexer.configure()
-	if (enableIndex) {
-		cards.eachWithIndex { card, counter ->
-			println "Indexing ${counter+1}/${cards.size()} : $card.title"
-			indexer.index card
-		}
-	}
-}
+new Importer(
+	enableDebug: false, 
+	enableIndex: false, 
+	clearConfigure: false, 
+	cards: cards
+).launch()
