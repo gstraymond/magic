@@ -4,19 +4,27 @@
   <meta charset="utf-8" />
   <title>Magic card search engine</title>
 
+  <!-- jquery -->
   <script type="text/javascript" src="vendor/jquery/1.7.1/jquery-1.7.1.min.js"></script>
 
+  <!-- bootstrap -->
   <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
   <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>  
 
+  <!-- linkify -->
   <script type="text/javascript" src="vendor/linkify/1.0/jquery.linkify-1.0-min.js"></script>  
   
+  <!-- jquery ui -->
   <link rel="stylesheet" href="vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.css">
   <script type="text/javascript" src="vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.min.js"></script>
 
-  <script type="text/javascript" src="jquery.facetview.js"></script>
-
+  <!-- facetview -->
+  <script type="text/javascript" src="jquery.facetview.min.js"></script>
   <link rel="stylesheet" href="css/facetview.css">
+
+  <!-- fancybox -->
+  <script type="text/javascript" src="fancybox/jquery.fancybox.js"></script>
+  <link rel="stylesheet" href="fancybox/jquery.fancybox.css" type="text/css" media="screen" />
 
   <script type="text/javascript">
 jQuery(document).ready(function($) {
@@ -113,8 +121,35 @@ jQuery(document).ready(function($) {
 
     <div class="facet-view-simple"></div>
 
-	<!-- Google Analytics -->
 	<script type="text/javascript">
+	  $(document).ready(function() {
+		console.log($(".thumbnail"))
+		$(".thumbnail").fancybox();
+		
+		MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+		var observer = new MutationObserver(function(mutations, observer) {
+		    // fired when a mutation occurs
+		    //console.log(mutations, observer);
+		    mutations.forEach(function(mutation) {
+		    	if (mutation.type == 'childList') {
+		    		console.log(mutation.type)
+		    		console.log(mutation.target)
+		    		console.log(mutation.attributeName)
+		    	}
+		    })
+		});
+
+		// define what element should be observed by the observer
+		// and what types of mutations trigger the callback
+		observer.observe(document, {
+		  childList: true,
+		  subtree: true,
+		  attributes: true
+		});
+	  });
+
+	  /* Google Analytics */
 	/*
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-36595811-2']);
