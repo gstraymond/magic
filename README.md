@@ -1,12 +1,9 @@
-Magic The Gathering card database indexer and front
-=====
+# Magic The Gathering card database indexer and front
 
-http://magic.gstraymond.fr
-
-# src
+## src
 Groovy classes to import various card database into an elasticsearch server :
 * forge : http://cardforge.org/releases/releases/forge/forge/
 * oracle : http://www.yawgatog.com/resources/oracle/
 
-# www
+## www
 Full javascript facetted search website based on https://github.com/okfn/facetview/  
