@@ -1,10 +1,12 @@
 package fr.gstraymond.oracle.converter
 
+import static fr.gstraymond.card.constants.Color.*
+import static fr.gstraymond.card.constants.Pattern.*
 import fr.gstraymond.card.MagicCard
 import fr.gstraymond.card.constants.Abilities
 import fr.gstraymond.card.constants.Rarity
 import fr.gstraymond.converter.CommonCardConverter
-import fr.gstraymond.oracle.card.constants.Edition;
+import fr.gstraymond.oracle.card.constants.Edition
 
 class CardConverter extends CommonCardConverter {
 
@@ -30,6 +32,56 @@ class CardConverter extends CommonCardConverter {
 		}
 
 		card
+	}
+	
+	void setConvertedManaCost() {
+		if (card.castingCost) {
+			// compte les mana colorés
+			card.convertedManaCost = countColoredMana() 
+			// compte les mana bicolores
+			card.convertedManaCost += countBiColoredMana()
+			// compte les mana incolores
+			def matches = UNCOLORED_CASTING_COST.matcher(card.castingCost)[0]
+			if (matches[1]) {
+				card.convertedManaCost += matches[1].toInteger()
+			}
+		}
+	}
+	
+	def countColoredMana() {
+		ALL_COLORS.collect { card.castingCost.count it }.sum()
+	}
+	
+	def countBiColoredMana = {
+		ALL_COLORS.collect { card.castingCost.count(it.toLowerCase()) / 2 }.sum()
+	}
+	
+	void setColors() {
+		if (card.castingCost) {
+			setColor(BLACK)
+			setColor(GREEN)
+			setColor(BLUE)
+			setColor(WHITE)
+			setColor(RED)
+		}
+		setColorType()
+	}
+	
+	void setColor(color) {
+		if (card.castingCost.toLowerCase().contains(color.toLowerCase())) {
+			card.colors += MAP_COLORS[color]
+		}
+	}
+	
+	void setColorType() {
+		def colorSize = card.colors?.size()
+		if (! colorSize) {
+			card.colors += [UNCOLORED]
+		} else if (colorSize == 1) {
+			card.colors += [MONOCOLORED]
+		} else {
+			card.colors += [MULTICOLORED]
+		}
 	}
 	
 	void setDescription() {

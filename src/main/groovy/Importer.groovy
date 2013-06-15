@@ -25,6 +25,8 @@ class Importer {
 			cards.each {
 				println '----'
 				println it?.title
+				println it?.colors
+				println it?.convertedManaCost
 				println it?.editions
 				println it?.priceRanges
 				println it?.publications

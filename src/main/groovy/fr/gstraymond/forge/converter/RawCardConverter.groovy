@@ -45,14 +45,7 @@ class RawCardConverter {
 
 	void setCastingCost() {
 		if (! 'no cost'.equals(cardAsMap.manacost)) {
-			rawCard.castingCost = cardAsMap.manacost?.split(' ').collect {
-				// multicolored mana cost : RG, BU...
-				if (it.size() == 2) {
-					it.toLowerCase()
-				} else {
-					it
-				}
-			}.join()
+			rawCard.castingCost = cardAsMap.manacost
 		}
 	}
 	

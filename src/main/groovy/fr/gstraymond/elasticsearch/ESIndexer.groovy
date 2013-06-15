@@ -9,8 +9,8 @@ import groovyx.net.http.RESTClient
 import static groovyx.net.http.ContentType.JSON
 
 class ESIndexer {
-	def host = 'card-search.gstraymond.fr'
-	//def host = 'localhost'
+	//def host = 'card-search.gstraymond.fr'
+	def host = 'localhost'
 	def port = 9200
 	def protocol = 'http'
 
@@ -20,6 +20,7 @@ class ESIndexer {
 
 	void index(obj) {
 		try {
+			println "indexing..."
 			def jsonBuilder = new JsonBuilder(obj)
 			def resp = restClient.post(
 					path: "magic/card/${getId(obj)}",
@@ -46,6 +47,7 @@ class ESIndexer {
 
 	void configure() {
 		try {
+			println "configuring..."
 			println getESConfiguration()
 			def resp = restClient.put(
 					path: 'magic',

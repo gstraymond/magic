@@ -2,12 +2,12 @@ package fr.gstraymond.card.constants
 
 class PriceRange {
 	String name
-	int inf
-	int sup
+	Double inf
+	Double sup
 	
 	final static range1 = new PriceRange(
 		name: 'Under 1€',
-		inf: 0,
+		inf: 0.01,
 		sup: 1
 	)
 	
