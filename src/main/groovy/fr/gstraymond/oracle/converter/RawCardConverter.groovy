@@ -1,6 +1,7 @@
 package fr.gstraymond.oracle.converter
 
-import static fr.gstraymond.card.constants.Pattern.*
+import static fr.gstraymond.card.constants.Color.*
+import static fr.gstraymond.card.constants.Patterns.*
 import fr.gstraymond.oracle.card.RawCard;
 
 class RawCardConverter {
@@ -12,7 +13,9 @@ class RawCardConverter {
 		if (! cardAsString) {
 			rawCard = null
 		// TODO : handle vanguard / scheme and plane cards
-		} else if (	cardAsString[1].equals("Vanguard") ||
+		// TODO : double cards ex Rise // Fall
+		} else if (	cardAsString[0].contains(' // ') ||
+					cardAsString[1].equals("Vanguard") ||
 					cardAsString[1].endsWith("Scheme") ||
 					cardAsString[1].startsWith("Plane -- ")) {
 			println "card skipped: ${cardAsString.join(' - ')}"
@@ -64,9 +67,41 @@ class RawCardConverter {
 		def possibleCastingCost = formatCastingCost(cardAsString.first())
 		// TODO : cas Desecrator Hag 2(b/g)(b/g)
 		if (VALID_CASTING_COST.matcher(possibleCastingCost).matches()) {
-			rawCard.castingCost = possibleCastingCost
+			rawCard.castingCost = transformCastingCost(possibleCastingCost)
 			removeFirst()
 		}
+	}
+	
+	def transformCastingCost(rawCastingCost) {
+		def castingCost = []
+		def inParenthesis = false
+		def inParenthesisSymbol = ''
+		rawCastingCost.each { symbol ->
+			if ('('.equals(symbol)) {
+				inParenthesis = true
+				inParenthesisSymbol = ''
+			}
+			
+			if (')'.equals(symbol)) {
+				inParenthesis = false
+				castingCost += inParenthesisSymbol
+			}
+			
+			if (ALL_COLORS_SYMBOLS.contains(symbol.toUpperCase()) || symbol.isNumber()) {
+				if (inParenthesis) {
+					if (symbol.isNumber()) {
+						inParenthesisSymbol += symbol.toUpperCase() + '/'
+					} else {
+						inParenthesisSymbol += symbol.toUpperCase()
+					}
+				} else if (symbol.isNumber() && castingCost.size() > 0 && castingCost.last().isNumber()) {
+					castingCost += castingCost.pop() + symbol
+				} else {
+					castingCost += symbol.toUpperCase()
+				}
+			}
+		}
+		castingCost.join(' ')
 	}
 	
 	def formatCastingCost(castingCost) {

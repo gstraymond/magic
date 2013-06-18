@@ -24,12 +24,12 @@ class Importer {
 		if (enableDebug) {
 			cards.each {
 				println '----'
-				println it?.title
-				println it?.colors
-				println it?.convertedManaCost
-				println it?.editions
-				println it?.priceRanges
-				println it?.publications
+				println "title        ${it?.title}"
+				println "colors       ${it?.colors}"
+				println "CMC          ${it?.convertedManaCost}"
+				println "editions     ${it?.editions}"
+				println "prices       ${it?.priceRanges}"
+				println "publications ${it?.publications}"
 			}
 		}
 	}

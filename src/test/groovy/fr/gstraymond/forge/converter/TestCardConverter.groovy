@@ -1,7 +1,10 @@
 package fr.gstraymond.forge.converter
 
 import static fr.gstraymond.card.constants.Color.*
+import groovy.transform.CompileStatic;
 
+
+@CompileStatic
 class TestCardConverter extends GroovyTestCase {
 
 	CardConverter cardConverter
@@ -18,25 +21,25 @@ class TestCardConverter extends GroovyTestCase {
 		assertEquals 0, cardConverter.calculateCMC(null)
 		
 		// emtpy
-		assertEquals 0, cardConverter.calculateCMC("")
+		assertEquals 0, cardConverter.calculateCMC('')
 		
 		// Beckon Apparition
-		assertEquals 1, cardConverter.calculateCMC("WB")
+		assertEquals 1, cardConverter.calculateCMC('WB')
 		
 		// Palladia-Mors
-		assertEquals 8, cardConverter.calculateCMC("2 W W R R G G")
+		assertEquals 8, cardConverter.calculateCMC('2 W W R R G G')
 		
 		// Reaper King
-		assertEquals 10, cardConverter.calculateCMC("2/W 2/U 2/B 2/R 2/G")
+		assertEquals 10, cardConverter.calculateCMC('2/W 2/U 2/B 2/R 2/G')
 		
 		// Emrakul, the Aeons Torn
-		assertEquals 15, cardConverter.calculateCMC("15")
+		assertEquals 15, cardConverter.calculateCMC('15')
 		
 		// Energy Bolt
-		assertEquals 2, cardConverter.calculateCMC("X R W")
+		assertEquals 2, cardConverter.calculateCMC('X R W')
 		
 		// Mental Misstep
-		assertEquals 1, cardConverter.calculateCMC("PU")
+		assertEquals 1, cardConverter.calculateCMC('PU')
 	}
 	
 	void testColors() {
@@ -49,43 +52,43 @@ class TestCardConverter extends GroovyTestCase {
 		// empty
 		assertEquals(
 			['Uncolored'],
-			cardConverter.calculateColors("")
+			cardConverter.calculateColors('')
 		)
 		
 		// Beckon Apparition
 		assertEquals(
 			['White', 'Black', 'Multicolored'],
-			cardConverter.calculateColors("WB")
+			cardConverter.calculateColors('WB')
 		)
 		
 		// Palladia-Mors
 		assertEquals(
 			['White', 'Red', 'Green', 'Multicolored'],
-			cardConverter.calculateColors("2 W W R R G G")
+			cardConverter.calculateColors('2 W W R R G G')
 		)
 		
 		// Reaper King
 		assertEquals(
 			['White', 'Blue', 'Black', 'Red', 'Green', 'Multicolored'],
-			cardConverter.calculateColors("2/W 2/U 2/B 2/R 2/G")
+			cardConverter.calculateColors('2/W 2/U 2/B 2/R 2/G')
 		)
 		
 		// Emrakul, the Aeons Torn
 		assertEquals(
 			['Uncolored'],
-			cardConverter.calculateColors("15")
+			cardConverter.calculateColors('15')
 		)
 		
 		// Energy Bolt
 		assertEquals(
 			['X', 'Red', 'White', 'Multicolored'],
-			cardConverter.calculateColors("X R W")
+			cardConverter.calculateColors('X R W')
 		)	
 		
 		// Mental Misstep
 		assertEquals(
 			['Life', 'Blue', 'Monocolored'],
-			cardConverter.calculateColors("PU")
+			cardConverter.calculateColors('PU')
 		)
 	}
 	
@@ -124,6 +127,25 @@ class TestCardConverter extends GroovyTestCase {
 		assertEquals(
 			['Between 15€ and 99,99€', 'More than 100€'],
 			cardConverter.calculatePriceRanges([99.99, 100, 0])
+		)
+	}
+	
+	void testFormatPublication() {
+		assertEquals(
+			'<li>ed - rar</li>',
+			cardConverter.formatPublication('ed', 'rar')
+		)
+		
+		assertEquals(
+			'<li>ed - rar: pr€<br/>pic</li>',
+			cardConverter.formatPublication('ed', 'rar', 'pr', 'pic')
+		)
+	}
+	
+	void testFormatPublications() {
+		assertEquals(
+			'<ul><li>1</li><li>2</li></ul>',
+			cardConverter.formatPublications(['<li>1</li>', '<li>2</li>'])
 		)
 	}
 }

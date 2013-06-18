@@ -1,7 +1,10 @@
 package fr.gstraymond.oracle.converter
 
 import static fr.gstraymond.card.constants.Color.*
-import static fr.gstraymond.card.constants.Pattern.*
+import static fr.gstraymond.card.constants.Patterns.*
+
+import java.util.List;
+
 import fr.gstraymond.card.MagicCard
 import fr.gstraymond.card.constants.Abilities
 import fr.gstraymond.card.constants.Rarity
@@ -32,56 +35,6 @@ class CardConverter extends CommonCardConverter {
 		}
 
 		card
-	}
-	
-	void setConvertedManaCost() {
-		if (card.castingCost) {
-			// compte les mana colorés
-			card.convertedManaCost = countColoredMana() 
-			// compte les mana bicolores
-			card.convertedManaCost += countBiColoredMana()
-			// compte les mana incolores
-			def matches = UNCOLORED_CASTING_COST.matcher(card.castingCost)[0]
-			if (matches[1]) {
-				card.convertedManaCost += matches[1].toInteger()
-			}
-		}
-	}
-	
-	def countColoredMana() {
-		ALL_COLORS.collect { card.castingCost.count it }.sum()
-	}
-	
-	def countBiColoredMana = {
-		ALL_COLORS.collect { card.castingCost.count(it.toLowerCase()) / 2 }.sum()
-	}
-	
-	void setColors() {
-		if (card.castingCost) {
-			setColor(BLACK)
-			setColor(GREEN)
-			setColor(BLUE)
-			setColor(WHITE)
-			setColor(RED)
-		}
-		setColorType()
-	}
-	
-	void setColor(color) {
-		if (card.castingCost.toLowerCase().contains(color.toLowerCase())) {
-			card.colors += MAP_COLORS[color]
-		}
-	}
-	
-	void setColorType() {
-		def colorSize = card.colors?.size()
-		if (! colorSize) {
-			card.colors += [UNCOLORED]
-		} else if (colorSize == 1) {
-			card.colors += [MONOCOLORED]
-		} else {
-			card.colors += [MULTICOLORED]
-		}
 	}
 	
 	void setDescription() {
@@ -129,9 +82,9 @@ class CardConverter extends CommonCardConverter {
 		def publications = []
 		card.editions.eachWithIndex { edition, index ->
 			def rarity = card.rarities[index]
-			publications += "$edition - $rarity"
+			publications += formatPublication(edition, rarity)
 		}
-		card.publications = publications.join(', ')
+		card.publications = formatPublications(publications)
 	}
 	
 	void setAbilities() {

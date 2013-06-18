@@ -1,7 +1,7 @@
 package fr.gstraymond.forge.converter
 
 import static fr.gstraymond.card.constants.Color.*
-import static fr.gstraymond.card.constants.Pattern.*
+import static fr.gstraymond.card.constants.Patterns.*
 
 import java.math.MathContext
 import java.text.DecimalFormat
@@ -40,89 +40,6 @@ class CardConverter extends CommonCardConverter {
 		card
 	}
 
-	void setConvertedManaCost() {
-		card.convertedManaCost = calculateCMC(card.castingCost)
-	}
-	
-	def getCastingCostAsList(castingCost) {
-		def castingCostChars = []
-		
-		if (castingCost) {
-			if (castingCost.contains(' ')) {
-				castingCostChars = castingCost.split(' ')
-			} else {
-				castingCostChars += castingCost
-			}
-		}
-		
-		castingCostChars
-	}
-	
-	def calculateCMC(castingCost) {
-		def getCastingCostAsList = getCastingCostAsList(castingCost)
-		if(! getCastingCostAsList) {
-			return 0
-		}
-		
-		getCastingCostAsList.sum {
-			// X
-			if (X.equals(it)) {
-				return 0
-			}
-			
-			// 1, 3, 15...
-			if(it.isNumber()) {
-				return it.toInteger()
-			}
-
-			// B, G, U...
-			if (ALL_COLORS_SYMBOLS.contains(it)) {
-				return 1
-			}
-			
-			// WG, BU...
-			if (it.size() == 2) {
-				return 1
-			}
-			
-			// 2/W, 2/G...
-			if (it.contains("2/")) {
-				return 2
-			}
-		}
-	}
-	
-	void setColors() {
-		card.colors = calculateColors(card.castingCost)
-	}
-	
-	def calculateColors(castingCost) {
-		def colors = getCastingCostAsList(castingCost).collect { colorBlock ->
-			// X			
-			// B, G, U...
-			// WG, BU...
-			// PU...
-			// 2/W, 2/G...			
-			colorBlock.findAll {
-				ALL_COLORS_SYMBOLS.contains(it)
-			}.collect {
-				MAP_COLORS[it]
-			}
-		}.flatten().unique()
-		
-		// counting only colored symbols
-		def colorSize = (colors - MAP_COLORS[LIFE] - MAP_COLORS[X]).size()
-		if (! colorSize) {
-			colors += UNCOLORED
-		} else if (colorSize == 1) {
-			colors += MONOCOLORED
-		} else {
-			colors += MULTICOLORED
-		}
-		
-		colors
-	}
-
 	void setDescription() {
 		card.description = rawCard.description
 
@@ -132,10 +49,12 @@ class CardConverter extends CommonCardConverter {
 	}
 
 	void setEditions() {
-		card.editions = rawCard.setInfos.collect { parseEdition(it) }
+		card.editions = rawCard.setInfos.collect {
+			parseEdition(it)
+		}
 	}
 
-	def parseEdition(editionRarityUrl) {
+	String parseEdition(String editionRarityUrl) {
 		def edition = parseEditionCode(editionRarityUrl)
 		if (! Edition.MAP[edition]) {
 			println "pb with $edition - ${card.title}"
@@ -198,14 +117,14 @@ class CardConverter extends CommonCardConverter {
 
 	void setPublications() {
 		def publications = rawCard.setInfos.collect {
-			def price = parsePrice(it)
-			if (price) {
-				price = ": ${price}€"
-			}
-
-			"<li>${parseEdition(it)} - ${parseRarity(it)}${price}<br/>${parseUrl(it)}</li>"
+			formatPublication(
+				parseEdition(it),
+				parseRarity(it),
+				parsePrice(it),
+				parseUrl(it)
+			)
 		}
-		card.publications = "<ul>${publications.join('')}</ul>"
+		card.publications = formatPublications(publications)
 	}
 
 	void setAbilities() {

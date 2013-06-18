@@ -9,7 +9,7 @@ import groovyx.net.http.RESTClient
 import static groovyx.net.http.ContentType.JSON
 
 class ESIndexer {
-	//def host = 'card-search.gstraymond.fr'
+//	def host = 'card-search.gstraymond.fr'
 	def host = 'localhost'
 	def port = 9200
 	def protocol = 'http'
