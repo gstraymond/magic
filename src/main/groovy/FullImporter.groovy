@@ -22,7 +22,7 @@ new OracleImporter().parseCards(oraclePath, fileName).each {
 
 println 'Done !'
 
-new Importer(
+new BaseImporter(
 	enableDebug: false,
 	enableIndex: true,
 	clearConfigure: false,

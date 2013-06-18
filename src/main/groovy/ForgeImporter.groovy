@@ -1,8 +1,4 @@
-import java.util.zip.ZipFile
-import fr.gstraymond.elasticsearch.ESIndexer
-import fr.gstraymond.forge.converter.CardConverter
-import fr.gstraymond.forge.converter.FileConverter
-import fr.gstraymond.forge.converter.RawCardConverter
+import fr.gstraymond.forge.importer.Importer
 
 def path = 'src/main/resources/forge/'
 
@@ -14,7 +10,7 @@ def path = 'src/main/resources/forge/'
 def cardsFileName = 'test.zip'
 def priceFileName = 'test-prices.txt'
 
-new Importer(
+new BaseImporter(
 	enableDebug: false, 
 	enableIndex: false, 
 	clearConfigure: true, 

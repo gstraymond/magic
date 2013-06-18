@@ -1,7 +1,4 @@
-import fr.gstraymond.oracle.converter.CardConverter
-import fr.gstraymond.oracle.converter.FileConverter
-import fr.gstraymond.oracle.converter.RawCardConverter
-import groovy.transform.CompileStatic
+import fr.gstraymond.oracle.importer.Importer
 
 def path = 'src/main/resources/oracle/'
 
@@ -9,7 +6,7 @@ def path = 'src/main/resources/oracle/'
 def fileName = 'All Sets-2013-05-03.txt' 
 //def fileName = 'test.txt'
 
-new Importer(
+new BaseImporter(
 	enableDebug: false, 
 	enableIndex: true, 
 	clearConfigure: false, 

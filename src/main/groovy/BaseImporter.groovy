@@ -2,7 +2,7 @@ import java.util.concurrent.ConcurrentSkipListMap.Index;
 
 import fr.gstraymond.elasticsearch.ESIndexer
 
-class Importer {
+class BaseImporter {
 	
 	def enableDebug = false
 	def enableIndex = false
