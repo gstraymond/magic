@@ -1,12 +1,11 @@
 package fr.gstraymond.elasticsearch
 
-import java.text.Normalizer;
-
-import groovy.json.JsonBuilder
-import groovy.json.JsonSlurper;
-import groovyx.net.http.HttpResponseException;
-import groovyx.net.http.RESTClient
 import static groovyx.net.http.ContentType.JSON
+import groovy.json.JsonBuilder
+import groovyx.net.http.HttpResponseException
+import groovyx.net.http.RESTClient
+
+import java.text.Normalizer
 
 class ESIndexer {
 //	def host = 'card-search.gstraymond.fr'

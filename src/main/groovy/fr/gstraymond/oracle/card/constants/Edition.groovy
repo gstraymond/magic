@@ -98,7 +98,7 @@ class Edition {
 		// Return to Ravnica Cycle/Block
 		RTR: 'Return to Ravnica',
 		GTC: 'Gatecrash',
-		//'Dragon\'s Maze'
+		DGM: 'Dragon\'s Maze',
 		
 		// Compilations / reprint sets
 		CH: 'Chronicles',
