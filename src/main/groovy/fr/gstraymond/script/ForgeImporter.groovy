@@ -1,3 +1,4 @@
+package fr.gstraymond.script
 import fr.gstraymond.forge.importer.Importer
 
 def path = 'src/main/resources/forge/'

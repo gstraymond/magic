@@ -8,8 +8,7 @@ import groovyx.net.http.RESTClient
 import java.text.Normalizer
 
 class ESIndexer {
-//	def host = 'card-search.gstraymond.fr'
-	def host = 'localhost'
+	def host
 	def port = 9200
 	def protocol = 'http'
 
@@ -19,7 +18,6 @@ class ESIndexer {
 
 	void index(obj) {
 		try {
-			println "indexing..."
 			def jsonBuilder = new JsonBuilder(obj)
 			def resp = restClient.post(
 					path: "magic/card/${getId(obj)}",

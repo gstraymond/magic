@@ -1,3 +1,4 @@
+package fr.gstraymond.script
 import java.util.concurrent.ConcurrentSkipListMap.Index;
 
 import fr.gstraymond.elasticsearch.ESIndexer
@@ -7,6 +8,7 @@ class BaseImporter {
 	def enableDebug = false
 	def enableIndex = false
 	def clearConfigure = false
+	def host = 'localhost'
 	def cards = []
 	
 	def launch() {
@@ -36,7 +38,7 @@ class BaseImporter {
 		
 	def index() {
 		if (enableIndex || clearConfigure) {
-			def indexer = new ESIndexer()
+			def indexer = new ESIndexer(host: host)
 			indexer.clear()
 			indexer.configure()
 			if (enableIndex) {
