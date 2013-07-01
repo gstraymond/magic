@@ -57,19 +57,19 @@ class TestCardConverter extends GroovyTestCase {
 		
 		// Beckon Apparition
 		assertEquals(
-			['White', 'Black', 'Multicolored'],
+			['White', 'Black', '2 colors', 'Guild'],
 			cardConverter.calculateColors('WB')
 		)
 		
 		// Palladia-Mors
 		assertEquals(
-			['White', 'Red', 'Green', 'Multicolored'],
+			['White', 'Red', 'Green', '3 colors', 'Gold'],
 			cardConverter.calculateColors('2 W W R R G G')
 		)
 		
 		// Reaper King
 		assertEquals(
-			['White', 'Blue', 'Black', 'Red', 'Green', 'Multicolored'],
+			['White', 'Blue', 'Black', 'Red', 'Green', '5 colors', 'Gold'],
 			cardConverter.calculateColors('2/W 2/U 2/B 2/R 2/G')
 		)
 		
@@ -81,13 +81,13 @@ class TestCardConverter extends GroovyTestCase {
 		
 		// Energy Bolt
 		assertEquals(
-			['X', 'Red', 'White', 'Multicolored'],
+			['X', 'Red', 'White', '2 colors', 'Gold'],
 			cardConverter.calculateColors('X R W')
 		)	
 		
 		// Mental Misstep
 		assertEquals(
-			['Life', 'Blue', 'Monocolored'],
+			['Life', 'Blue', '1 color'],
 			cardConverter.calculateColors('PU')
 		)
 	}

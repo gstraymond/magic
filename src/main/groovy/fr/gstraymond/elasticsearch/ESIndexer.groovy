@@ -113,6 +113,19 @@ class ESIndexer {
 							}
 						}
 					}
+					colors {
+						type 'multi_field'
+						fields {
+							colors {
+								type 'string'
+								index 'analyzed'
+							}
+							exact {
+								type 'string'
+								index 'not_analyzed'
+							}
+						}
+					}
 				}
 			}
 		}

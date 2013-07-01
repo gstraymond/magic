@@ -63,7 +63,8 @@ abstract class CommonCardConverter {
 	}
 	
 	List<String> calculateColors(String castingCost) {
-		def colors = getCastingCostAsList(castingCost).collect { colorBlock ->
+		def colors = getCastingCostAsList(castingCost)
+		def textColors = colors.collect { colorBlock ->
 			// X
 			// B, G, U...
 			// WG, BU...
@@ -77,19 +78,35 @@ abstract class CommonCardConverter {
 		}.flatten().unique()
 		
 		// counting only colored symbols
-		def colorSize = (colors - MAP_COLORS[LIFE] - MAP_COLORS[X]).size()
+		def coloredColors = textColors - MAP_COLORS[LIFE] - MAP_COLORS[X]
+		def colorSize = coloredColors.size()
 		if (! colorSize) {
-			colors += UNCOLORED
+			textColors += UNCOLORED
 		} else if (colorSize == 1) {
-			colors += MONOCOLORED
+			textColors += MONOCOLORED
 		} else {
-			colors += MULTICOLORED
+			textColors += MULTICOLORED.replace('{X}', "$colorSize")
+			
+			// card is part of a guild ?
+			if (GUILDS.find { colors.contains(it) }) {
+				textColors += GUILD
+			}
+			
+			// card is gold ?
+			if (colors.findAll { (it - '2/').size() == 1 }.size() > 1) {
+				textColors += GOLD
+			}
 		}
 		
-		colors
+		textColors
 	}
 	
+	
 	def formatPublication(edition, rarity, price = '', picture = '') {
+		if (!edition || !rarity) {
+			throw new Exception("error with $edition - $rarity (${card.dump()}")
+		}
+		
 		def formattedPrice = price ? ": ${price}€" : ''
 		def formattedPicture = picture ? "<br/>${picture}" : ''
 		"<li>${edition} - ${rarity}${formattedPrice}${formattedPicture}</li>"
@@ -121,14 +138,18 @@ abstract class CommonCardConverter {
 	
 	void setPower() {
 		if (rawCard.powerToughness) {
-			card.power = rawCard.powerToughness.split('/')[0]
+			card.power = getPTSplit(rawCard.powerToughness)[0]
 		}
 	}
 	
 	void setToughness() {
 		if (rawCard.powerToughness) {
-			card.toughness = rawCard.powerToughness.split('/')[1]
+			card.toughness = getPTSplit(rawCard.powerToughness)[1]
 		}
+	}
+	
+	def getPTSplit(powerToughness) {
+		powerToughness.split('/')
 	}
 	
 }

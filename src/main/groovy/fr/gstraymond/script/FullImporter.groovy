@@ -3,10 +3,12 @@ import fr.gstraymond.forge.importer.Importer as ForgeImporter
 import fr.gstraymond.oracle.importer.Importer as OracleImporter
 
 
+/** http://cardforge.org/releases/releases/forge/forge/ */
 def forgePath = 'src/main/resources/forge/'
 def cardsFileName = 'cardsfolder.zip'
 def priceFileName = 'all-prices.txt'
 
+/** from http://www.yawgatog.com/resources/oracle/ */
 def oraclePath = 'src/main/resources/oracle/'
 def fileName = 'All Sets-2013-05-03.txt'
 

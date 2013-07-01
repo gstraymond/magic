@@ -6,21 +6,23 @@ import groovy.transform.TypeChecked
 @TypeChecked
 @CompileStatic
 class Color {
-	final static BLACK = 'B'
-	final static BLUE  = 'U'
-	final static GREEN = 'G'
-	final static RED   = 'R'
-	final static WHITE = 'W'
-	final static LIFE  = 'P'
-	final static X     = 'X'
+	static BLACK = 'B'
+	static BLUE  = 'U'
+	static GREEN = 'G'
+	static RED   = 'R'
+	static WHITE = 'W'
+	static LIFE  = 'P'
+	static X     = 'X'
 	
-	final static UNCOLORED = 'Uncolored'
-	final static MONOCOLORED = 'Monocolored'
-	final static MULTICOLORED = 'Multicolored'
+	static UNCOLORED = 'Uncolored'
+	static MONOCOLORED = '1 color'
+	static MULTICOLORED = '{X} colors'
+	static GUILD = 'Guild'
+	static GOLD = 'Gold'
 	
-	final static ALL_COLORS_SYMBOLS = [BLACK, BLUE, GREEN, RED, WHITE, LIFE, X]
+	static ALL_COLORS_SYMBOLS = [BLACK, BLUE, GREEN, RED, WHITE, LIFE, X]
 	
-	final static MAP_COLORS = [
+	static MAP_COLORS = [
 		B: 'Black',
 		G: 'Green',
 		U: 'Blue',
@@ -28,5 +30,29 @@ class Color {
 		R: 'Red',
 		P: 'Life',
 		X: 'X'
+	]
+	
+	static WU = 'WU' // Azorius Senate
+	static WB = 'WB' // Orzhov Syndicate
+	static BU = 'BU' // House Dimir
+	static UR = 'UR' // Izzet League
+	static BR = 'BR' // Cult of Rakdos
+	static BG = 'BG' // Golgari Swarm
+	static RG = 'RG' // Gruul Clans
+	static RW = 'RW' // Boros Legion
+	static GW = 'GW' // Selesnya Conclave
+	static GU = 'GU' // Simic Combine
+	
+	static GUILDS = [
+		WU,
+		WB,
+		BU,
+		UR,
+		BR,
+		BG,
+		RG,
+		RW,
+		GW,
+		GU
 	]
 }
