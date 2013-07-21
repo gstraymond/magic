@@ -32,6 +32,7 @@ class BaseImporter {
 				println "editions     ${it?.editions}"
 				println "prices       ${it?.priceRanges}"
 				println "publications ${it?.publications}"
+				println "formats      ${it?.formats}"
 			}
 		}
 	}

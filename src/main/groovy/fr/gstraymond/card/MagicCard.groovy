@@ -14,4 +14,5 @@ class MagicCard {
 	List priceRanges = []
 	String publications
 	List abilities = []
+	List formats = []
 }

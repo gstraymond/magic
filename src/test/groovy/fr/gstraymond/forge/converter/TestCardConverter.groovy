@@ -1,6 +1,7 @@
 package fr.gstraymond.forge.converter
 
 import static fr.gstraymond.card.constants.Color.*
+import fr.gstraymond.card.MagicCard;
 import groovy.transform.CompileStatic;
 
 
@@ -145,7 +146,48 @@ class TestCardConverter extends GroovyTestCase {
 	void testFormatPublications() {
 		assertEquals(
 			'<ul><li>1</li><li>2</li></ul>',
-			cardConverter.formatPublications(['<li>1</li>', '<li>2</li>'])
+			cardConverter.formatPublications(['<li>2</li>', '<li>1</li>'])
+		)
+	}
+	
+	void testGetFormat() {
+		assertEquals(
+			[],
+			cardConverter.getFormats(new MagicCard(title: 'Chaos Orb', editions: ['LEA', 'LEB', '2ED']))
+		)
+		assertEquals(
+			['Vintage'],
+			cardConverter.getFormats(new MagicCard(title: 'Black Lotus', editions: ['LEA', 'LEB', '2ED']))
+		)
+		
+		assertEquals(
+			['Legacy', 'Vintage'],
+			cardConverter.getFormats(new MagicCard(title: 'Animate Dead', editions: ['LEA', 'LEB', '2ED', '3ED', '4ED', '5ED']))
+		)
+		
+		assertEquals(
+			['Legacy', 'Vintage'],
+			cardConverter.getFormats(new MagicCard(title: 'Chrome Mox', editions: ['MRD']))
+		)
+		
+		assertEquals(
+			['Modern', 'Legacy', 'Vintage'],
+			cardConverter.getFormats(new MagicCard(title: 'Blazing Archon', editions: ['RAV']))
+		)
+		
+		assertEquals(
+			['Modern', 'Legacy', 'Vintage'],
+			cardConverter.getFormats(new MagicCard(title: 'Ponder', editions: ['M10', 'M12', 'LRW']))
+		)
+		
+		assertEquals(
+			['Extended', 'Modern', 'Legacy', 'Vintage'],
+			cardConverter.getFormats(new MagicCard(title: 'Blightsteel Colossus', editions: ['MBS']))
+		)
+		
+		assertEquals(
+			['Standard', 'Extended', 'Modern', 'Legacy', 'Vintage'],
+			cardConverter.getFormats(new MagicCard(title: 'Jarad, Golgari Lich Lord', editions: ['RTR']))
 		)
 	}
 }

@@ -10,7 +10,7 @@ def priceFileName = 'all-prices.txt'
 
 /** from http://www.yawgatog.com/resources/oracle/ */
 def oraclePath = 'src/main/resources/oracle/'
-def fileName = 'All Sets-2013-05-03.txt'
+def fileName = 'All Sets-2013-07-12.txt'
 
 new BaseImporter(
 	enableIndex: true,

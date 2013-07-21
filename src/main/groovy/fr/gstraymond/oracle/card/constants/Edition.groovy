@@ -18,6 +18,7 @@ class Edition {
 		M11: 'Magic 2011',
 		M12: 'Magic 2012',
 		M13: 'Magic 2013',
+		M14: 'Magic 2014',
 		// Expansion sets
 		AN: 'Arabian_Nights',
 		AQ: 'Antiquities',

@@ -12,9 +12,9 @@ def cardsFileName = 'test.zip'
 def priceFileName = 'test-prices.txt'
 
 new BaseImporter(
-	enableDebug: false, 
+	enableDebug: true, 
 	enableIndex: false, 
-	clearConfigure: true, 
+	clearConfigure: false, 
 	cards: new Importer().parseCards(path, cardsFileName, priceFileName)
 ).launch()
 

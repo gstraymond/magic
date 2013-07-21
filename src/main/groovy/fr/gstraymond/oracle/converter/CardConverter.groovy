@@ -10,6 +10,7 @@ import fr.gstraymond.card.constants.Abilities
 import fr.gstraymond.card.constants.Rarity
 import fr.gstraymond.converter.CommonCardConverter
 import fr.gstraymond.oracle.card.constants.Edition
+import fr.gstraymond.oracle.card.constants.Formats;
 
 class CardConverter extends CommonCardConverter {
 
@@ -29,6 +30,7 @@ class CardConverter extends CommonCardConverter {
 			setRarity()
 			setPublications()
 			setAbilities()
+			setFormats()
 			
 			// dedupe rarity
 			card.rarities = card.rarities.unique()
@@ -62,7 +64,14 @@ class CardConverter extends CommonCardConverter {
 	
 	def parseEdition(editionRarity) {
 		def edition = editionRarity.split('-')[0]
+		if (! Edition.MAP[edition]) {
+			throw new Exception("pb with $edition - ${card.title}")
+		}
 		Edition.MAP[edition]
+	}
+	
+	def getRawEdition() {
+		editionsRarities.collect { it.split('-')[0] }
 	}
 	
 	void setRarity() {
@@ -73,11 +82,12 @@ class CardConverter extends CommonCardConverter {
 	
 	def parseRarity(editionRarity) {
 		def rarity = editionRarity.split('-')[1]
+		if (! Rarity.MAP[rarity]) {
+			throw new Exception("pb with $rarity - ${card.title}")
+		}
 		Rarity.MAP[rarity]
 	}
 
-	// TODO : Auratog 1/2 TE - Rare, TSP - null	
-	// TODO : disenchant Alpha - Common, Beta - Common, Unlimited - Common, Revised - Common, Fourth Edition - Common, Ice Age - Common, Mirage - Common, Fifth Edition - Common, Tempest - Common, Urza's Saga - Common, Six Edition - Common, Mercadian Masques - Common, Starter 2000 - Common, Seventh Edition - Common, Time Spiral - null
 	void setPublications() {
 		def publications = []
 		card.editions.eachWithIndex { edition, index ->
@@ -97,5 +107,16 @@ class CardConverter extends CommonCardConverter {
 	
 	boolean abilityMatch (text, ability) {
 		text.toLowerCase().contains(ability.toLowerCase())
+	}
+	
+	
+	void setFormats() {
+		card.formats = getFormats(card)
+	}
+	
+	def getFormats(card) {
+		Formats.ALL.findAll {
+			formatMatch(it, card.title, rawEdition)
+		}.name
 	}
 }

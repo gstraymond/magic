@@ -11,6 +11,7 @@ import fr.gstraymond.card.constants.Abilities
 import fr.gstraymond.card.constants.PriceRange
 import fr.gstraymond.converter.CommonCardConverter
 import fr.gstraymond.forge.card.constants.Edition
+import fr.gstraymond.forge.card.constants.Formats;
 
 class CardConverter extends CommonCardConverter {
 	Map pricesAsMap
@@ -35,6 +36,7 @@ class CardConverter extends CommonCardConverter {
 			setPriceRanges()
 			setPublications()
 			setAbilities()
+			setFormats()
 		}
 
 		card
@@ -49,21 +51,23 @@ class CardConverter extends CommonCardConverter {
 	}
 
 	void setEditions() {
-		card.editions = rawCard.setInfos.collect {
-			parseEdition(it)
-		}
+		card.editions = rawCard.setInfos.collect { parseEdition(it) }
 	}
 
 	String parseEdition(String editionRarityUrl) {
 		def edition = parseEditionCode(editionRarityUrl)
 		if (! Edition.MAP[edition]) {
-			println "pb with $edition - ${card.title}"
+			throw new Exception("pb with $edition - ${card.title}")
 		}
 		Edition.MAP[edition]
 	}
 
 	def parseEditionCode(editionRarityUrl) {
 		editionRarityUrl.split('\\|')[0]
+	}
+	
+	def getRawEdition() {
+		rawCard.setInfos.collect { parseEditionCode(it) }
 	}
 
 	void setRarity() {
@@ -74,12 +78,12 @@ class CardConverter extends CommonCardConverter {
 		def prices = rawCard.setInfos.collect { getPrice(it) }
 		card.priceRanges = calculatePriceRanges(prices)
 	}
-	
+
 	def calculatePriceRanges(prices) {
 		if (! prices || prices.sum() == 0) {
 			return ['No price']
 		}
-		
+
 		PriceRange.ALL.findAll { priceRange ->
 			prices.findAll { price ->
 				priceRange.inf <= price && price < priceRange.sup
@@ -137,5 +141,15 @@ class CardConverter extends CommonCardConverter {
 
 	boolean abilityMatch (text, ability) {
 		text.toLowerCase().contains(ability.toLowerCase())
+	}
+
+	void setFormats() {
+		card.formats = getFormats(card)
+	}
+
+	def getFormats(card) {
+		Formats.ALL.findAll {
+			formatMatch(it, card.title, rawEdition)
+		}.name
 	}
 }

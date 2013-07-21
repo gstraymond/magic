@@ -113,7 +113,7 @@ abstract class CommonCardConverter {
 	}
 	
 	def formatPublications(publications) {
-		"<ul>${publications.join('')}</ul>"
+		"<ul>${publications.sort().join('')}</ul>"
 	}
 
 	void setConvertedManaCost() {
@@ -150,6 +150,23 @@ abstract class CommonCardConverter {
 	
 	def getPTSplit(powerToughness) {
 		powerToughness.split('/')
+	}
+	
+	
+	def formatMatch(format, title, editions) {
+		def formatMatch = true
+		
+		if (format.sets) {
+			// editions must be included in set
+			formatMatch = format.sets.count { editions.contains(it) } > 0
+		}
+		
+		if (formatMatch && format.bannedCards) {
+			// title must not be included in bannedCards
+			formatMatch = format.bannedCards.count { title.equals(it) } == 0
+		}
+		
+		formatMatch
 	}
 	
 }
