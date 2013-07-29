@@ -9,16 +9,22 @@ import fr.gstraymond.card.MagicCard
 import fr.gstraymond.card.constants.Abilities
 import fr.gstraymond.card.constants.Rarity
 import fr.gstraymond.converter.CommonCardConverter
-import fr.gstraymond.oracle.card.constants.Edition
-import fr.gstraymond.oracle.card.constants.Formats;
+import fr.gstraymond.scrap.card.ScrapedCard
+import fr.gstraymond.scrap.card.constants.Edition
+import fr.gstraymond.scrap.card.constants.Formats;
 
 class CardConverter extends CommonCardConverter {
+	
+	List<ScrapedCard> scrapedCards
 
 	MagicCard parse() {
-		if (! rawCard) {
+		if (! scrapedCards) {
+			println "No scraped card found for ${rawCard.title}"
+		} else if (! rawCard) {
 			card = null
 		} else {
 			setTitle()
+			setFrenchTitle()
 			setCastingCost()
 			setConvertedManaCost()
 			setColors()
@@ -31,6 +37,7 @@ class CardConverter extends CommonCardConverter {
 			setPublications()
 			setAbilities()
 			setFormats()
+			setArtists()
 			
 			// dedupe rarity
 			card.rarities = card.rarities.unique()
@@ -44,55 +51,38 @@ class CardConverter extends CommonCardConverter {
 	}
 	
 	void setEditions() {
-		card.editions = editionsRarities.collect {
-			parseEdition(it)
+		card.editions = scrapedCards.collect {
+			parseEdition(it.edition)
 		}
 	}
 	
-	List getEditionsRarities() {
-		def editionsRarities = []
-		def editionRarity = rawCard.editionRarity
-		if (editionRarity.contains(',')) {
-			editionsRarities = editionRarity.split(',').collect {
-				it.trim()
-			}
-		} else {
-			editionsRarities += editionRarity
-		}
-		editionsRarities
-	}
-	
-	def parseEdition(editionRarity) {
-		def edition = editionRarity.split('-')[0]
-		if (! Edition.MAP[edition]) {
+	def parseEdition(edition) {
+		def fullEdition = Edition.editionsMap[edition]
+		
+		if (! fullEdition) {
 			throw new Exception("pb with $edition - ${card.title}")
 		}
-		Edition.MAP[edition]
+		
+		fullEdition
 	}
 	
-	def getRawEdition() {
-		editionsRarities.collect { it.split('-')[0] }
+	def getRawEditions() {
+		scrapedCards*.edition
 	}
 	
 	void setRarity() {
-		card.rarities = editionsRarities.collect {
-			parseRarity(it)
-		}
-	}
-	
-	def parseRarity(editionRarity) {
-		def rarity = editionRarity.split('-')[1]
-		if (! Rarity.MAP[rarity]) {
-			throw new Exception("pb with $rarity - ${card.title}")
-		}
-		Rarity.MAP[rarity]
+		card.rarities = scrapedCards*.rarity?.unique()
 	}
 
 	void setPublications() {
-		def publications = []
-		card.editions.eachWithIndex { edition, index ->
-			def rarity = card.rarities[index]
-			publications += formatPublication(edition, rarity)
+		def publications = scrapedCards.collect {
+			def pictureUrl = "http://magiccards.info/scans/en/${it.edition}/${it.collectorNumber}.jpg"
+			//TODO Price
+			formatPublication(
+				parseEdition(it.edition),
+				it.rarity,
+				'',
+				pictureUrl)
 		}
 		card.publications = formatPublications(publications)
 	}
@@ -116,7 +106,17 @@ class CardConverter extends CommonCardConverter {
 	
 	def getFormats(card) {
 		Formats.ALL.findAll {
-			formatMatch(it, card.title, rawEdition)
+			formatMatch(it, card.title, rawEditions)
 		}.name
+	}
+	
+	void setFrenchTitle() {
+		card.frenchTitle = scrapedCards.find {
+			it.frenchTitle
+		}?.frenchTitle
+	}
+	
+	void setArtists() {
+		card.artists = scrapedCards*.artist.unique()
 	}
 }

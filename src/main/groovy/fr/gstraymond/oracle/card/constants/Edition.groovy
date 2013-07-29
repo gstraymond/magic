@@ -1,7 +1,7 @@
 package fr.gstraymond.oracle.card.constants
 
 class Edition {
-	static final MAP = [
+	static final Map MAP = [
 		// Base / core editions
 		A: 'Alpha',
 		B: 'Beta',
@@ -106,6 +106,7 @@ class Edition {
 		ARC: 'Archenemy',
 		HOP: 'Planechase',
 		PC2: 'Planechase 2012',
+		MMA: 'Modern Masters',
 		
 		// Commander
 		CMD: 'Commander',

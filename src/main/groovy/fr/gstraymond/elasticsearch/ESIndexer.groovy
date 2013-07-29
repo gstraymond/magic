@@ -126,6 +126,19 @@ class ESIndexer {
 							}
 						}
 					}
+					artists {
+						type 'multi_field'
+						fields {
+							artists {
+								type 'string'
+								index 'analyzed'
+							}
+							exact {
+								type 'string'
+								index 'not_analyzed'
+							}
+						}
+					}
 				}
 			}
 		}

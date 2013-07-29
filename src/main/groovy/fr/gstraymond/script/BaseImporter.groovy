@@ -27,12 +27,16 @@ class BaseImporter {
 			cards.each {
 				println '----'
 				println "title        ${it?.title}"
+				println "frenchTitle  ${it?.frenchTitle}"
+				println "castingCost  ${it?.castingCost}"
 				println "colors       ${it?.colors}"
 				println "CMC          ${it?.convertedManaCost}"
 				println "editions     ${it?.editions}"
+				println "rarities     ${it?.rarities}"
 				println "prices       ${it?.priceRanges}"
 				println "publications ${it?.publications}"
 				println "formats      ${it?.formats}"
+				println "artists      ${it?.artists}"
 			}
 		}
 	}

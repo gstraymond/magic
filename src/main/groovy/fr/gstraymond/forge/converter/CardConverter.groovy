@@ -66,7 +66,7 @@ class CardConverter extends CommonCardConverter {
 		editionRarityUrl.split('\\|')[0]
 	}
 	
-	def getRawEdition() {
+	def getRawEditions() {
 		rawCard.setInfos.collect { parseEditionCode(it) }
 	}
 
@@ -149,7 +149,7 @@ class CardConverter extends CommonCardConverter {
 
 	def getFormats(card) {
 		Formats.ALL.findAll {
-			formatMatch(it, card.title, rawEdition)
+			formatMatch(it, card.title, rawEditions)
 		}.name
 	}
 }

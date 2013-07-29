@@ -14,8 +14,9 @@ class RawCardConverter {
 			rawCard = null
 		// TODO : handle vanguard / scheme and plane cards
 		// TODO : double cards ex Rise // Fall
-		} else if (	cardAsString[0].contains(' // ') ||
+		} else if (	//cardAsString[0].contains(' // ') ||
 					cardAsString[1].equals("Vanguard") ||
+					cardAsString[1].equals("Phenomenon") ||
 					cardAsString[1].endsWith("Scheme") ||
 					cardAsString[1].startsWith("Plane -- ")) {
 			println "card skipped: ${cardAsString.join(' - ')}"
@@ -64,11 +65,12 @@ class RawCardConverter {
 	}
 	
 	void setCastingCost() {
-		def possibleCastingCost = formatCastingCost(cardAsString.first())
-		// TODO : cas Desecrator Hag 2(b/g)(b/g)
+		def possibleCastingCost = cardAsString.first()
 		if (VALID_CASTING_COST.matcher(possibleCastingCost).matches()) {
 			rawCard.castingCost = transformCastingCost(possibleCastingCost)
 			removeFirst()
+		} else {
+			println("No casting cost found for $possibleCastingCost for $VALID_CASTING_COST")
 		}
 	}
 	
@@ -102,10 +104,6 @@ class RawCardConverter {
 			}
 		}
 		castingCost.join(' ')
-	}
-	
-	def formatCastingCost(castingCost) {
-		castingCost.replaceAll('\\(', '')	.replaceAll('/', '').replaceAll('\\)', '')
 	}
 	
 	void setDescription() {

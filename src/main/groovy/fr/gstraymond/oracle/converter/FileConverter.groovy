@@ -1,7 +1,10 @@
 package fr.gstraymond.oracle.converter
 
+import java.io.File;
+
 class FileConverter {
 	File dumpFile
+	File priceFile
 	
 	List parse() {
 		List cards = []

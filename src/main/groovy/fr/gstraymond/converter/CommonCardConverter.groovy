@@ -108,12 +108,15 @@ abstract class CommonCardConverter {
 		}
 		
 		def formattedPrice = price ? ": ${price}€" : ''
-		def formattedPicture = picture ? "<br/>${picture}" : ''
-		"<li>${edition} - ${rarity}${formattedPrice}${formattedPicture}</li>"
+		def formattedPicture = picture ? "${picture}" : ''
+		"<li><a href='${formattedPicture}' title=\"${edition} - ${rarity}\">${edition} - ${rarity}${formattedPrice}</a></li>"
 	}
 	
 	def formatPublications(publications) {
-		"<ul>${publications.sort().join('')}</ul>"
+		def sortedPublications = publications.sort {
+			it.split('>')[2]
+		} 
+		"<ul class='unstyled'>${sortedPublications.join('')}</ul>"
 	}
 
 	void setConvertedManaCost() {

@@ -133,19 +133,19 @@ class TestCardConverter extends GroovyTestCase {
 	
 	void testFormatPublication() {
 		assertEquals(
-			'<li>ed - rar</li>',
-			cardConverter.formatPublication('ed', 'rar')
+			'<li><a href=\'http://google.com\'>ed - rar</a></li>',
+			cardConverter.formatPublication('ed', 'rar', null, 'http://google.com')
 		)
 		
 		assertEquals(
-			'<li>ed - rar: pr€<br/>pic</li>',
+			'<li><a href=\'pic\'>ed - rar: pr€</a></li>',
 			cardConverter.formatPublication('ed', 'rar', 'pr', 'pic')
 		)
 	}
 	
 	void testFormatPublications() {
 		assertEquals(
-			'<ul><li>1</li><li>2</li></ul>',
+			'<ul class=\'unstyled\'><li>1</li><li>2</li></ul>',
 			cardConverter.formatPublications(['<li>2</li>', '<li>1</li>'])
 		)
 	}

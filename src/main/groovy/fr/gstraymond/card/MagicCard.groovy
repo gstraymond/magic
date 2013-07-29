@@ -2,6 +2,7 @@ package fr.gstraymond.card
 
 class MagicCard {
 	String title
+	String frenchTitle
 	String castingCost
 	List colors = []
 	int convertedManaCost = 0
@@ -15,4 +16,5 @@ class MagicCard {
 	String publications
 	List abilities = []
 	List formats = []
+	List artists = []
 }

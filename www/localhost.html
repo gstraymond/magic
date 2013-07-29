@@ -19,11 +19,11 @@
   <script type="text/javascript" src="vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.min.js"></script>
 
   <!-- facetview -->
-  <script type="text/javascript" src="jquery.facetview.min.js"></script>
+  <script type="text/javascript" src="jquery.facetview.js"></script>
   <link rel="stylesheet" href="css/facetview.css">
 
   <!-- fancybox -->
-  <script type="text/javascript" src="fancybox/jquery.fancybox.js"></script>
+  <script type="text/javascript" src="fancybox/jquery.fancybox.pack.js"></script>
   <link rel="stylesheet" href="fancybox/jquery.fancybox.css" type="text/css" media="screen" />
 
   <script type="text/javascript">
@@ -44,7 +44,8 @@ jQuery(document).ready(function($) {
         {'field': 'rarities', 'display': 'Rarity'},
         {'field': 'priceRanges.exact', 'display': 'Price'},
         {'field': 'editions.exact', 'display': 'Edition'},
-        {'field': 'formats', 'display': 'Formats'},
+        {'field': 'formats', 'display': 'Format'},
+        {'field': 'artists.exact', 'display': 'Artist'},
     ],
     search_sortby: [
        	{'display':'Title', 'field':'title.exact'},
@@ -62,28 +63,35 @@ jQuery(document).ready(function($) {
     result_display: [
 		[
 	 	    {
-	 	        "pre": "<code>",
- 	        	"field": "castingCost",
-	 	        "post": "</code>&nbsp"
- 	    	},
-	 	    {
 	 	        "pre": "<strong>",
 	 	        "field": "title",
+		 	    "post": "</strong>"
+	 	    },
+	 	    {
+	 	        "pre": "<strong> &mdash; ",
+	 	        "field": "frenchTitle",
 	 	        "post": "</strong>"
-	 	    }
+	 	    },
  	    ],
  	    [
 	 	    {
+	 	        "pre": "<span class='label label-important'>",
+ 	        	"field": "castingCost",
+	 	        "post": "</span>&nbsp;"
+ 	    	},
+	 	    {
+	 	        "pre": "<span class='label label-info'>",
 	        	"field": "type",
+	 	        "post": "</span>"
 	    	},
 	 	    {
-	 	    	"pre": "&ndash; <strong>",
+	 	    	"pre": "&nbsp;<span class='label label-success'>",
 	        	"field": "power",
-	 	        "post": " / "
+	 	        "post": " &ndash; "
 	    	},
 	 	    {
 	        	"field": "toughness",
-	        	"post": "</strong>"
+	        	"post": "</span>"
 	    	},
 	    ],
  	    [
@@ -92,8 +100,6 @@ jQuery(document).ready(function($) {
 	        	"field": "description",
 	 	        "post": "</pre>"
 	    	},
-	    ],
- 	    [
  	 	    {
 	 	        "pre": "<div class='publications'>",
 	        	"field": "publications",
@@ -112,8 +118,16 @@ jQuery(document).ready(function($) {
     height:600px;
     margin:20px auto 0 auto;
 }
-.publications {
-	clear: both;
+
+pre {
+	margin-top: 15px;
+	margin-left: 115px;
+	font-size: 11px;
+	word-break: normal;
+}
+
+div.publications {
+	font-size: 11px;
 }
 </style>
 
@@ -123,34 +137,11 @@ jQuery(document).ready(function($) {
     <div class="facet-view-simple"></div>
 
 	<script type="text/javascript">
-	  $(document).ready(function() {
-		console.log($(".thumbnail"))
-		$(".thumbnail").fancybox();
-		
-		MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-
-		var observer = new MutationObserver(function(mutations, observer) {
-		    // fired when a mutation occurs
-		    //console.log(mutations, observer);
-		    mutations.forEach(function(mutation) {
-		    	if (mutation.type == 'childList') {
-		    		console.log(mutation.type)
-		    		console.log(mutation.target)
-		    		console.log(mutation.attributeName)
-		    	}
-		    })
+		$(document).ajaxComplete(function() {
+			$('.publications li a').each(function() {
+				$(this).fancybox();
+			});
 		});
-
-		// define what element should be observed by the observer
-		// and what types of mutations trigger the callback
-		observer.observe(document, {
-		  childList: true,
-		  subtree: true,
-		  attributes: true
-		});
-	  });
-
-	  /* Google Analytics */
 	/*
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-36595811-2']);
