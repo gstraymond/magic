@@ -138,9 +138,8 @@ div.publications {
 
 	<script type="text/javascript">
 		$(document).ajaxComplete(function() {
-			$('.publications li a').each(function() {
-				$(this).fancybox();
-			});
+			$('.publications li a').attr('rel', 'gallery');
+			$('.publications li a').fancybox();
 		});
 	/*
 	  var _gaq = _gaq || [];
