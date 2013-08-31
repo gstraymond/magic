@@ -7,6 +7,7 @@ import java.util.List;
 
 import fr.gstraymond.card.CommonRawCard
 import fr.gstraymond.card.MagicCard
+import fr.gstraymond.card.constants.Color;
 import groovy.transform.CompileStatic;
 
 abstract class CommonCardConverter {
@@ -62,8 +63,19 @@ abstract class CommonCardConverter {
 		}
 	}
 	
-	List<String> calculateColors(String castingCost) {
+	List<String> calculateColors(String castingCost, List hiddenHints) {
 		def colors = getCastingCostAsList(castingCost)
+		
+		hiddenHints?.findAll {
+			it.contains('color indicator')
+		}.each { colorIndicator ->
+			Color.MAP_COLORS.entrySet().each { entry ->
+				if (colorIndicator.contains(entry.value)) {
+					colors += entry.key
+				}
+			}
+		}
+		
 		def textColors = colors.collect { colorBlock ->
 			// X
 			// B, G, U...
@@ -124,7 +136,7 @@ abstract class CommonCardConverter {
 	}
 	
 	void setColors() {
-		card.colors = calculateColors(card.castingCost)
+		card.colors = calculateColors(card.castingCost, card.hiddenHints)
 	}
 	
 	void setTitle() {

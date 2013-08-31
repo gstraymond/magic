@@ -56,3 +56,18 @@ Creature -- Atog
 1/2
 Sacrifice an enchantment: Auratog gets +2/+2 until end of turn.
 TE-R, TSP-S
+
+Bane of Hanweir
+Creature -- Werewolf
+5/5
+Bane of Hanweir attacks each turn if able.
+At the beginning of each upkeep, if a player cast two or more spells last turn, transform Bane of Hanweir.
+[Red color indicator. Back face. Transforms into Hanweir Watchkeep.]
+ISD-U
+
+Transguild Courier
+4
+Artifact Creature -- Golem
+3/3
+[White/Blue/Black/Red/Green color indicator.]
+DIS-U

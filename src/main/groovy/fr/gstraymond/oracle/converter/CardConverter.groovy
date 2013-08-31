@@ -27,9 +27,10 @@ class CardConverter extends CommonCardConverter {
 			setFrenchTitle()
 			setCastingCost()
 			setConvertedManaCost()
+			setDescription()
+			setHiddenHints()
 			setColors()
 			setType()
-			setDescription()
 			setPower()
 			setToughness()
 			setEditions()
@@ -44,6 +45,14 @@ class CardConverter extends CommonCardConverter {
 		}
 
 		card
+	}
+	
+	void setHiddenHints() {
+		if (card.description.contains('[') && card.description.concat(']')) {
+			def start = card.description.indexOf('[') + 1
+			def end = card.description.size() - 2
+			card.hiddenHints = card.description[start..end].split('\\.')
+		}
 	}
 	
 	void setDescription() {

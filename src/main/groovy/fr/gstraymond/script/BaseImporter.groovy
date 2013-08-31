@@ -37,6 +37,7 @@ class BaseImporter {
 				println "publications ${it?.publications}"
 				println "formats      ${it?.formats}"
 				println "artists      ${it?.artists}"
+				println "hiddenHints  ${it?.hiddenHints}"
 			}
 		}
 	}

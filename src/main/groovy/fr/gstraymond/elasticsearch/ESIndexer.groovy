@@ -139,6 +139,14 @@ class ESIndexer {
 							}
 						}
 					}
+					publications {
+						fields {
+							publications {
+								type 'string'
+								index 'not_analyzed'
+							}
+						}
+					}
 				}
 			}
 		}

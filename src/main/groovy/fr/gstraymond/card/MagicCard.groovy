@@ -17,4 +17,5 @@ class MagicCard {
 	List abilities = []
 	List formats = []
 	List artists = []
+	List hiddenHints = []
 }
