@@ -1,0 +1,24 @@
+.facet-view-simple{
+    width:800px;
+    height:600px;
+    margin:20px auto 0 auto;
+}
+
+pre {
+	margin-top: 15px;
+	margin-left: 115px;
+	font-size: 13px;
+	word-break: normal;
+}
+
+div.publications {
+	font-size: 13px;
+}
+
+.fancybox-skin {
+	background: black;
+}
+
+strong.title {
+	font-size: 16px;
+}
