@@ -104,7 +104,7 @@ $(document).ajaxComplete(function() {
 		
 		getColors().forEach( function(color) {
 			var re = new RegExp(color + ' ', 'g');
-			html = html.replace(re, '<img alt="' + color + '" src="img/' + color + '.jpg" title="' + color + '">');
+			html = html.replace(re, '<img alt="' + color + '" src="img/hd/' + color + '.jpeg" title="' + color + '" width="16">');
 		});
 		$(this).html(html);
 	});
@@ -119,7 +119,7 @@ $(document).ajaxComplete(function() {
 		
 		getColors().concat(getSpecialSymbols()).forEach( function(color) {
 			var re = new RegExp('\\{' + color + '\\}', 'g');
-			html = html.replace(re, '<img alt="' + color + '" src="img/' + color + '.jpg" title="' + color + '">');
+			html = html.replace(re, '<img alt="' + color + '" src="img/hd/' + color + '.jpeg" title="' + color + '" width="16">');
 		});
 		$(this).html(html);
 	});
