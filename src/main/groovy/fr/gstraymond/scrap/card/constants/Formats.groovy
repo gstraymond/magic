@@ -14,7 +14,8 @@ class Formats {
 		'rtr',
 		'gtc',
 		'dgm',
-		'm14']
+		'm14',
+		'ths']
 	)
 
 	static Format EXTENDED = new Format(

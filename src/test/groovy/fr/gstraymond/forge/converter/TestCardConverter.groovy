@@ -4,8 +4,6 @@ import static fr.gstraymond.card.constants.Color.*
 import fr.gstraymond.card.MagicCard;
 import groovy.transform.CompileStatic;
 
-
-@CompileStatic
 class TestCardConverter extends GroovyTestCase {
 
 	CardConverter cardConverter

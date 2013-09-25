@@ -1,4 +1,3 @@
-
 import fr.gstraymond.scrap.card.constants.Edition
 import groovy.json.JsonBuilder
 
