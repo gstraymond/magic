@@ -32,6 +32,14 @@ class Color {
 		X: 'X'
 	]
 	
+	static DEVOTION_COLORS = [
+		BLACK,
+		BLUE,
+		GREEN,
+		RED,
+		WHITE
+	]
+	
 	static WU = 'WU' // Azorius Senate
 	static WB = 'WB' // Orzhov Syndicate
 	static BU = 'BU' // House Dimir

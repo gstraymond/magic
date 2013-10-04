@@ -19,7 +19,7 @@ class CardConverter extends CommonCardConverter {
 
 	MagicCard parse() {
 		if (! scrapedCards) {
-			println "No scraped card found for ${rawCard.title}"
+			System.err.println "No scraped card found for ${rawCard.title}"
 		} else if (! rawCard) {
 			card = null
 		} else {
@@ -39,12 +39,18 @@ class CardConverter extends CommonCardConverter {
 			setAbilities()
 			setFormats()
 			setArtists()
+			setDevotions()
 			
 			// dedupe rarity
 			card.rarities = card.rarities.unique()
 		}
 
 		card
+	}
+	
+	@Override
+	void setTitle() {
+		card.title = scrapedCards.get(0).title
 	}
 	
 	void setHiddenHints() {

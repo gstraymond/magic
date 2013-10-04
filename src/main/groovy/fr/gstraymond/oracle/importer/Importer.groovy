@@ -3,6 +3,7 @@ package fr.gstraymond.oracle.importer
 import fr.gstraymond.oracle.converter.CardConverter
 import fr.gstraymond.oracle.converter.FileConverter
 import fr.gstraymond.oracle.converter.RawCardConverter
+import fr.gstraymond.scrap.card.constants.Title;
 import groovy.json.JsonSlurper
 
 class Importer {
@@ -22,6 +23,14 @@ class Importer {
 			def rawCard = rawCardConverter.parse()
 			if (rawCard) {
 				def scrapedCards = fullScrapedCards[rawCard.title]
+				
+				// title with special characters
+				if (! scrapedCards) {
+					def key = Title.MAP[rawCard.title]
+					scrapedCards = fullScrapedCards[key]
+				}
+				
+				// doubles cards
 				if (! scrapedCards) {
 					def key = fullScrapedCards.keySet().find {
 						it.startsWith(rawCard.title + ' (')

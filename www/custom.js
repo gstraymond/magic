@@ -16,8 +16,9 @@ jQuery(document).ready(function($) {
     datatype: 'json',
     facets: [
         {'field': 'colors.exact', 'display': 'Color'},
-        {'field': 'type', 'display': 'Type'},
+        {'field': 'devotions', 'display': 'Devotion'},
         {'field': 'convertedManaCost', 'display': 'Converted mana cost'},
+        {'field': 'type', 'display': 'Type'},
         {'field': 'abilities.exact', 'display': 'Abilities'},
         {'field': 'power', 'display': 'Power'},
         {'field': 'toughness', 'display': 'Toughness'},

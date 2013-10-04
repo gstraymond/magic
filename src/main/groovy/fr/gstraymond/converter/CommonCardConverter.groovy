@@ -113,6 +113,29 @@ abstract class CommonCardConverter {
 		textColors
 	}
 	
+	def setDevotions() {
+		card.devotions = calculateDevotions(card.castingCost)
+	}
+	
+	List<Integer> calculateDevotions(String castingCost) {
+		def getCastingCostAsList = getCastingCostAsList(castingCost)
+		
+		def devotionMap = [:]
+		getCastingCostAsList.each { cost ->
+			cost.findAll {
+				Color.DEVOTION_COLORS.contains it
+			}.each {
+				if (devotionMap.containsKey(it)) {
+					def count = devotionMap.get(it)
+					devotionMap.put(it, ++count)
+				} else {
+					devotionMap.put(it, 1)
+				}
+			}
+		}
+		devotionMap.values().collect().unique()
+	}
+	
 	
 	def formatPublication(edition, rarity, price = '', picture = '') {
 		if (!edition || !rarity) {

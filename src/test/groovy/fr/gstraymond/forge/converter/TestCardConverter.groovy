@@ -45,49 +45,49 @@ class TestCardConverter extends GroovyTestCase {
 		// null
 		assertEquals(
 			['Uncolored'],
-			cardConverter.calculateColors(null)
+			cardConverter.calculateColors(null, [])
 		)
 		
 		// empty
 		assertEquals(
 			['Uncolored'],
-			cardConverter.calculateColors('')
+			cardConverter.calculateColors('', [])
 		)
 		
 		// Beckon Apparition
 		assertEquals(
 			['White', 'Black', '2 colors', 'Guild'],
-			cardConverter.calculateColors('WB')
+			cardConverter.calculateColors('WB', [])
 		)
 		
 		// Palladia-Mors
 		assertEquals(
 			['White', 'Red', 'Green', '3 colors', 'Gold'],
-			cardConverter.calculateColors('2 W W R R G G')
+			cardConverter.calculateColors('2 W W R R G G', [])
 		)
 		
 		// Reaper King
 		assertEquals(
 			['White', 'Blue', 'Black', 'Red', 'Green', '5 colors', 'Gold'],
-			cardConverter.calculateColors('2/W 2/U 2/B 2/R 2/G')
+			cardConverter.calculateColors('2/W 2/U 2/B 2/R 2/G', [])
 		)
 		
 		// Emrakul, the Aeons Torn
 		assertEquals(
 			['Uncolored'],
-			cardConverter.calculateColors('15')
+			cardConverter.calculateColors('15', [])
 		)
 		
 		// Energy Bolt
 		assertEquals(
 			['X', 'Red', 'White', '2 colors', 'Gold'],
-			cardConverter.calculateColors('X R W')
+			cardConverter.calculateColors('X R W', [])
 		)	
 		
 		// Mental Misstep
 		assertEquals(
 			['Life', 'Blue', '1 color'],
-			cardConverter.calculateColors('PU')
+			cardConverter.calculateColors('PU', [])
 		)
 	}
 	
@@ -131,19 +131,19 @@ class TestCardConverter extends GroovyTestCase {
 	
 	void testFormatPublication() {
 		assertEquals(
-			'<li><a href=\'http://google.com\'>ed - rar</a></li>',
+			'<li><a href=\'http://google.com\' title="ed - rar">ed - rar</a></li>',
 			cardConverter.formatPublication('ed', 'rar', null, 'http://google.com')
 		)
 		
 		assertEquals(
-			'<li><a href=\'pic\'>ed - rar: pr€</a></li>',
+			'<li><a href=\'pic\' title="ed - rar">ed - rar: pr€</a></li>',
 			cardConverter.formatPublication('ed', 'rar', 'pr', 'pic')
 		)
 	}
 	
 	void testFormatPublications() {
 		assertEquals(
-			'<ul class=\'unstyled\'><li>1</li><li>2</li></ul>',
+			'<ul class=\'unstyled\'><li><a>1</a></li><li><a>2</a></li></ul>',
 			cardConverter.formatPublications(['<li>2</li>', '<li>1</li>'])
 		)
 	}
@@ -188,4 +188,52 @@ class TestCardConverter extends GroovyTestCase {
 			cardConverter.getFormats(new MagicCard(title: 'Jarad, Golgari Lich Lord', editions: ['RTR']))
 		)
 	}
+	
+	void testDevotions() {
+		assertEquals(
+			[],
+			cardConverter.calculateDevotions(null))
+		
+		assertEquals(
+			[],
+			cardConverter.calculateDevotions(''))
+		
+		
+		// Beckon Apparition
+		assertEquals(
+			[1],
+			cardConverter.calculateDevotions('WB')
+		)
+		
+		// Palladia-Mors
+		assertEquals(
+			[2],
+			cardConverter.calculateDevotions('2 W W R R G G')
+		)
+		
+		// Reaper King
+		assertEquals(
+			[1],
+			cardConverter.calculateDevotions('2/W 2/U 2/B 2/R 2/G')
+		)
+		
+		// Emrakul, the Aeons Torn
+		assertEquals(
+			[],
+			cardConverter.calculateDevotions('15')
+		)
+		
+		// Energy Bolt
+		assertEquals(
+			[1],
+			cardConverter.calculateDevotions('X R W')
+		)	
+		
+		// Mental Misstep
+		assertEquals(
+			[1],
+			cardConverter.calculateDevotions('PU')
+		)
+	}
+	
 }

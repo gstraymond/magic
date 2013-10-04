@@ -38,6 +38,7 @@ class BaseImporter {
 				println "formats      ${it?.formats}"
 				println "artists      ${it?.artists}"
 				println "hiddenHints  ${it?.hiddenHints}"
+				println "devotions    ${it?.devotions}"
 			}
 		}
 	}
