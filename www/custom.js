@@ -10,85 +10,100 @@ function range(start, end) {
 // facetview 
 jQuery(document).ready(function($) {
   $('.facet-view-simple').each(function() {
-  $(this).facetview({
-    search_url: searchUrl,
-    search_index: 'magic',
-    datatype: 'json',
-    facets: [
-        {'field': 'colors.exact', 'display': 'Color'},
-        {'field': 'devotions', 'display': 'Devotion'},
-        {'field': 'convertedManaCost', 'display': 'Converted mana cost'},
-        {'field': 'type', 'display': 'Type'},
-        {'field': 'abilities.exact', 'display': 'Abilities'},
-        {'field': 'power', 'display': 'Power'},
-        {'field': 'toughness', 'display': 'Toughness'},
-        {'field': 'rarities', 'display': 'Rarity'},
-        {'field': 'priceRanges.exact', 'display': 'Price'},
-        {'field': 'editions.exact', 'display': 'Edition'},
-        {'field': 'formats', 'display': 'Format'},
-        {'field': 'artists.exact', 'display': 'Artist'},
-    ],
-    search_sortby: [
-       	{'display':'Title', 'field':'title.exact'},
-       	{'display':'Power', 'field':'power'},
-       	{'display':'Toughness', 'field':'toughness'},
-       	{'display':'Converted mana cost', 'field':'convertedManaCost'},
-    ],
-    searchbox_fieldselect: [
-		{'display':'Title','field':'title'},
-		{'display':'Description','field':'description'}
-	],
-    paging: { size: 10 },
-    default_operator: "AND",
-    //default_freetext_fuzzify: "*",
-    result_display: [
-		[
-	 	    {
-	 	        "pre": "<span class='castingCost'>",
- 	        	"field": "castingCost",
-	 	        "post": "</span>&nbsp;"
- 	    	},
-	 	    {
-	 	        "pre": "<strong class='title'>",
-	 	        "field": "title",
-		 	    "post": "</strong>"
-	 	    },
-	 	    {
-	 	        "pre": "<strong class='title'> &mdash; ",
-	 	        "field": "frenchTitle",
-	 	        "post": "</strong>"
-	 	    },
- 	    ],
- 	    [
-	 	    {
-	 	        "pre": "<span class='label label-info'>",
-	        	"field": "type",
-	 	        "post": "</span>"
-	    	},
-	 	    {
-	 	    	"pre": "&nbsp;<span class='label label-success'>",
-	        	"field": "power",
-	 	        "post": " &ndash; "
-	    	},
-	 	    {
-	        	"field": "toughness",
-	        	"post": "</span>"
-	    	},
+	  $(this).facetview({
+	    search_url: searchUrl,
+	    search_index: 'magic',
+	    datatype: 'json',
+	    facets: [
+	        {'field': 'colors.exact', 'display': 'Color'},
+	        {'field': 'devotions', 'display': 'Devotion'},
+	        {'field': 'convertedManaCost', 'display': 'Converted mana cost'},
+	        {'field': 'type', 'display': 'Type'},
+	        {'field': 'abilities.exact', 'display': 'Ability'},
+	        {'field': 'power', 'display': 'Power'},
+	        {'field': 'toughness', 'display': 'Toughness'},
+	        {'field': 'rarities', 'display': 'Rarity'},
+	        {'field': 'priceRanges.exact', 'display': 'Price'},
+	        {'field': 'editions.exact', 'display': 'Set'},
+	        {'field': 'formats', 'display': 'Format'},
+	        {'field': 'artists.exact', 'display': 'Artist'},
 	    ],
- 	    [
-	 	    {
-	 	        "pre": "<pre class='description'>",
-	        	"field": "description",
-	 	        "post": "</pre>"
-	    	},
- 	 	    {
-	 	        "pre": "<div class='publications'>",
-	        	"field": "publications",
-	 	        "post": "</div>"
-	    	}
-	    ]
-     ]
+	    search_sortby: [
+	       	{'display':'Title', 'field':'title.exact'},
+	       	{'display':'Power', 'field':'power'},
+	       	{'display':'Toughness', 'field':'toughness'},
+	       	{'display':'Converted mana cost', 'field':'convertedManaCost'},
+	    ],
+	    searchbox_fieldselect: [
+			{'display':'Title','field':'title'},
+			{'display':'Description','field':'description'}
+		],
+	    paging: { size: 10 },
+	    default_operator: "AND",
+	    //default_freetext_fuzzify: "*",
+	    result_display: [
+			[
+		 	    {
+		 	        "pre": "<span class='castingCost'>",
+	 	        	"field": "castingCost",
+		 	        "post": "</span>&nbsp;"
+	 	    	},
+		 	    {
+		 	        "pre": "<strong class='title'>",
+		 	        "field": "title",
+			 	    "post": "</strong>"
+		 	    },
+		 	    {
+		 	        "pre": "<strong class='title'> &mdash; ",
+		 	        "field": "frenchTitle",
+		 	        "post": "</strong>"
+		 	    },
+	 	    ],
+	 	    [
+		 	    {
+		 	        "pre": "<span class='label label-info'>",
+		        	"field": "type",
+		 	        "post": "</span>"
+		    	},
+		 	    {
+		 	    	"pre": "&nbsp;<span class='label label-success'>",
+		        	"field": "power",
+		 	        "post": " &ndash; "
+		    	},
+		 	    {
+		        	"field": "toughness",
+		        	"post": "</span>"
+		    	},
+		    ],
+	 	    [
+		 	    {
+		 	        "pre": "<pre class='description'>",
+		        	"field": "description",
+		 	        "post": "</pre>"
+		    	},
+	 	 	    {
+		 	        "pre": "<div class='publications'>",
+		        	"field": "publications",
+		 	        "post": "</div>"
+		    	}
+		    ]
+	     ]
+	  });
   });
+
+  $('.help').fancybox();
+  $('.help').click(function(event) {
+	  if ($(event.target).hasClass('btn-success') ||
+		  $(event.target).hasClass('help-lang-txt')) {
+		  $('.help-lang').toggle();  
+	  }
+	  
+	  if ($(this).is(':visible')) {
+		  event.stopPropagation();  
+	  }
+  });
+  $('a.btn-info').click(function() {
+	  $('.help').click();
   });
 });
 
