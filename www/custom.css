@@ -7,6 +7,12 @@
 	margin-left: 203px;
 }
 
+.facetview_learnmore,
+.facetview_order,
+.facetview_howmany {
+	display: none;
+}
+
 pre {
 	margin-top: 15px;
 	margin-left: 115px;

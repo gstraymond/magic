@@ -28,19 +28,8 @@ jQuery(document).ready(function($) {
 	        {'field': 'formats', 'display': 'Format'},
 	        {'field': 'artists.exact', 'display': 'Artist'},
 	    ],
-	    search_sortby: [
-	       	{'display':'Title', 'field':'title.exact'},
-	       	{'display':'Power', 'field':'power'},
-	       	{'display':'Toughness', 'field':'toughness'},
-	       	{'display':'Converted mana cost', 'field':'convertedManaCost'},
-	    ],
-	    searchbox_fieldselect: [
-			{'display':'Title','field':'title'},
-			{'display':'Description','field':'description'}
-		],
 	    paging: { size: 10 },
 	    default_operator: "AND",
-	    //default_freetext_fuzzify: "*",
 	    result_display: [
 			[
 		 	    {
@@ -102,7 +91,7 @@ jQuery(document).ready(function($) {
 		  event.stopPropagation();  
 	  }
   });
-  $('a.btn-info').click(function() {
+  $('.help-button').click(function() {
 	  $('.help').click();
   });
 });
