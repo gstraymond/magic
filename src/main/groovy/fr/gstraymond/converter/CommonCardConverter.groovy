@@ -114,7 +114,11 @@ abstract class CommonCardConverter {
 	}
 	
 	def setDevotions() {
-		card.devotions = calculateDevotions(card.castingCost)
+		def isPermanent = !card.type.contains("Instant") && !card.type.contains("Sorcery")
+		
+		if (isPermanent) {
+			card.devotions = calculateDevotions(card.castingCost)
+		}
 	}
 	
 	List<Integer> calculateDevotions(String castingCost) {
