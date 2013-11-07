@@ -30,6 +30,7 @@ jQuery(document).ready(function($) {
 	    ],
 	    paging: { size: 10 },
 	    default_operator: "AND",
+	    sort: ['_uid'],
 	    result_display: [
 			[
 		 	    {
@@ -70,10 +71,18 @@ jQuery(document).ready(function($) {
 		        	"field": "description",
 		 	        "post": "</pre>"
 		    	},
-	 	 	    {
-		 	        "pre": "<div class='publications'>",
-		        	"field": "publications",
-		 	        "post": "</div>"
+		 	    {
+		 	        "pre": "<div class='rawPublications'>",
+		        	"field": "publications.edition",
+		    	},
+		 	    {
+		 	        "pre": "|",
+		        	"field": "publications.rarity"
+		    	},
+		 	    {
+		 	        "pre": "|",
+		        	"field": "publications.image",
+			 	    "post": "</div>",
 		    	}
 		    ]
 	     ]
@@ -97,9 +106,48 @@ jQuery(document).ready(function($) {
 });
 
 $(document).ajaxComplete(function() {
+	// transformation des publications
+	$('.rawPublications').each( function() {
+		var textSplit = $(this).text().split('|');
+		var editions = textSplit[0].split(',');
+		var rarities = textSplit[1].split(',');
+		var images = textSplit[2].split(',');
+		
+		var html = ''
+		var showMoreLink = false;
+		editions.forEach(function(element, index, array) {
+			var title = element + " - " + rarities[index];
+			var cssClass = '';
+			if (index > 9) {
+				cssClass = ' hidden';
+				showMoreLink = true;
+			}
+			
+			html += "<div class='label label-important" + cssClass + "'>";
+			html += "<img src='img/pic.png' width='10px' /> ";
+			html += "<a title=\"" + title + "\" href='" + images[index] + "'>";
+			html += element; 
+			html += "</a>";
+			html += "</div> ";
+		});
+		if (showMoreLink) {
+			html += "<div class='label label-warning showmore'>Show more ...</div>"
+		}
+		$(this).html(html);
+	});
+
+	$('.thumbnail').click( function() {
+		$(this).siblings(".rawPublications").find("a:first").click();
+	});
+
+	$('.showmore').click( function() {
+		$(this).hide();
+		$(this).siblings('.hidden').removeClass('hidden');
+	});
+	
 	// initialisation de la gallery des images des cartes
-	$('.publications li a').attr('rel', 'gallery');
-	$('.publications li a').fancybox();
+	$('.rawPublications a').attr('rel', 'gallery');
+	$('.rawPublications a').fancybox();
 	
 	// affichage des symboles spéciaux
 	$('.castingCost').each( function() {

@@ -13,7 +13,7 @@ class MagicCard {
 	List editions = []
 	List rarities = []
 	List priceRanges = []
-	String publications
+	List<Publication> publications
 	List abilities = []
 	List formats = []
 	List artists = []

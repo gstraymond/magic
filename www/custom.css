@@ -14,14 +14,26 @@
 }
 
 pre {
-	margin-top: 15px;
+	margin-top: 10px;
 	margin-left: 115px;
 	font-size: 13px;
 	word-break: normal;
 }
 
-div.publications {
-	font-size: 13px;
+.rawPublications {
+	margin-top: 5px;
+	margin-left: 115px;
+}
+
+.rawPublications div {
+	float: left;
+	margin-right: 2px;
+	margin-bottom: 2px;
+}
+
+.rawPublications a {
+	color: white;
+	text-decoration: none;
 }
 
 .fancybox-skin {
@@ -30,6 +42,7 @@ div.publications {
 
 strong.title {
 	font-size: 16px;
+	line-height: 24px;
 }
 
 .help {
@@ -58,4 +71,9 @@ strong.title {
 
 .disclaimer p {
 	font-size: 10px;
+}
+
+.thumbnail,
+.showmore {
+	cursor: pointer;
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import fr.gstraymond.card.CommonRawCard
 import fr.gstraymond.card.MagicCard
 import fr.gstraymond.card.constants.Color;
+import fr.gstraymond.oracle.card.constants.ReleaseDate;
 import groovy.transform.CompileStatic;
 
 abstract class CommonCardConverter {
@@ -140,22 +141,17 @@ abstract class CommonCardConverter {
 		devotionMap.values().collect().unique()
 	}
 	
-	
-	def formatPublication(edition, rarity, price = '', picture = '') {
-		if (!edition || !rarity) {
-			throw new Exception("error with $edition - $rarity (${card.dump()}")
-		}
-		
-		def formattedPrice = price ? ": ${price}€" : ''
-		def formattedPicture = picture ? "${picture}" : ''
-		"<li><a href='${formattedPicture}' title=\"${edition} - ${rarity}\">${edition} - ${rarity}${formattedPrice}</a></li>"
-	}
-	
-	def formatPublications(publications) {
-		def sortedPublications = publications.sort {
-			it.split('>')[2]
+	def sortPublications(publications) {
+		publications.sort {
+			def code = it.editionCode.toUpperCase()
+			def releaseDate = ReleaseDate.MAP[code]
+			
+			if (!releaseDate) {
+				throw new Exception("No release date for ${code} (${it.edition})")
+			}
+			
+			releaseDate + it.edition
 		} 
-		"<ul class='unstyled'>${sortedPublications.join('')}</ul>"
 	}
 
 	void setConvertedManaCost() {

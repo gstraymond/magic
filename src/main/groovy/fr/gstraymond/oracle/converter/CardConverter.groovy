@@ -6,6 +6,7 @@ import static fr.gstraymond.card.constants.Patterns.*
 import java.util.List;
 
 import fr.gstraymond.card.MagicCard
+import fr.gstraymond.card.Publication;
 import fr.gstraymond.card.constants.Abilities
 import fr.gstraymond.card.constants.Rarity
 import fr.gstraymond.converter.CommonCardConverter
@@ -62,7 +63,7 @@ class CardConverter extends CommonCardConverter {
 	}
 	
 	void setDescription() {
-		card.description = rawCard.description.join('\n')
+		card.description = rawCard.description.join('\n').replaceAll('\\)\\{\\(', ')}{(')
 	}
 	
 	void setEditions() {
@@ -92,14 +93,14 @@ class CardConverter extends CommonCardConverter {
 	void setPublications() {
 		def publications = scrapedCards.collect {
 			def pictureUrl = "http://magiccards.info/scans/en/${it.edition}/${it.collectorNumber}.jpg"
-			//TODO Price
-			formatPublication(
-				parseEdition(it.edition),
-				it.rarity,
-				'',
-				pictureUrl)
+			new Publication(
+				edition:  parseEdition(it.edition),
+				editionCode: it.edition,
+				rarity: it.rarity,
+				image: pictureUrl
+			)
 		}
-		card.publications = formatPublications(publications)
+		card.publications = sortPublications(publications)
 	}
 	
 	void setAbilities() {

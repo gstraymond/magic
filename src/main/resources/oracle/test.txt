@@ -71,3 +71,12 @@ Artifact Creature -- Golem
 3/3
 [White/Blue/Black/Red/Green color indicator.]
 DIS-U
+
+Figure of Destiny
+(r/w)
+Creature -- Kithkin
+1/1
+{(r/w)}: Figure of Destiny becomes a 2/2 Kithkin Spirit.
+{(r/w){(r/w){(r/w)}: If Figure of Destiny is a Spirit, it becomes a 4/4 Kithkin Spirit Warrior.
+{(r/w){(r/w){(r/w){(r/w){(r/w){(r/w)}: If Figure of Destiny is a Warrior, it becomes an 8/8 Kithkin Spirit Warrior Avatar with flying and first strike.
+EVE-R

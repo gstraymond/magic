@@ -77,8 +77,7 @@ class ESIndexer {
 		'artists',
 		'colors',
 		'editions',
-		'formats',
-		'publications'
+		'formats'
 	]
 
 	def getESConfiguration() {
