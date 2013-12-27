@@ -1,7 +1,9 @@
 package fr.gstraymond.script
-import java.util.concurrent.ConcurrentSkipListMap.Index;
+
+import java.util.concurrent.atomic.AtomicInteger
 
 import fr.gstraymond.elasticsearch.ESIndexer
+import groovyx.gpars.GParsPool
 
 class BaseImporter {
 	
@@ -49,9 +51,14 @@ class BaseImporter {
 			indexer.clear()
 			indexer.configure()
 			if (enableIndex) {
-				cards.eachWithIndex { card, counter ->
-					println "Indexing ${counter+1}/${cards.size()} : $card.title"
-					indexer.index card
+				def counter = new AtomicInteger(0)
+				GParsPool.withPool(4) { 
+					cards.eachParallel { card ->
+						counter++
+						
+						println "Indexing ${counter}/${cards.size()} : $card.title"
+						indexer.index card
+					}
 				}
 			}
 		}

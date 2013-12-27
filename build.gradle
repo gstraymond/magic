@@ -1,0 +1,18 @@
+apply plugin: 'groovy'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.codehaus.groovy:groovy-all:2.1.6'
+	compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.6'
+	compile 'org.jsoup:jsoup:1.7.2'
+	compile 'org.codehaus.gpars:gpars:1.1.0'
+	compile 'junit:junit:3.8.2'
+}
+
+task oracleImporter (dependsOn: 'classes', type: JavaExec) {
+	main = 'fr.gstraymond.script.OracleImporter'
+	classpath = sourceSets.main.runtimeClasspath
+}
