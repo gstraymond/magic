@@ -12,7 +12,20 @@ dependencies {
 	compile 'junit:junit:3.8.2'
 }
 
+task configure (dependsOn: 'classes', type: JavaExec) {
+	description = 'MAGIC IMPORTER : clean et créé les index'
+	main = 'fr.gstraymond.script.Configure'
+	classpath = sourceSets.main.runtimeClasspath
+}
+
 task oracleImporter (dependsOn: 'classes', type: JavaExec) {
+	description = 'MAGIC IMPORTER : index les données de l\'oracle'
 	main = 'fr.gstraymond.script.OracleImporter'
+	classpath = sourceSets.main.runtimeClasspath
+}
+
+task scrap (dependsOn: 'classes', type: JavaExec) {
+	description = 'MAGIC IMPORTER'
+	main = 'fr.gstraymond.script.Scrap'
 	classpath = sourceSets.main.runtimeClasspath
 }

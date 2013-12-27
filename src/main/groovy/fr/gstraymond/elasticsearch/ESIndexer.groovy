@@ -1,6 +1,7 @@
 package fr.gstraymond.elasticsearch
 
 import static groovyx.net.http.ContentType.JSON
+import fr.gstraymond.card.tools.TitleNormalizer;
 import groovy.json.JsonBuilder
 import groovyx.net.http.HttpResponseException
 import groovyx.net.http.RESTClient
@@ -19,19 +20,14 @@ class ESIndexer {
 	void index(obj) {
 		try {
 			def jsonBuilder = new JsonBuilder(obj)
+			def title = TitleNormalizer.normalize(obj.title)
 			def resp = restClient.post(
-					path: "magic/card/${getId(obj)}",
+					path: "magic/card/$title",
 					body: jsonBuilder.toPrettyString(),
 					requestContentType : JSON)
 		} catch(HttpResponseException e) {
 			e.printStackTrace();
 		}
-	}
-
-	String getId(obj) {
-		def link = Normalizer.normalize(obj.title, Normalizer.Form.NFKD)
-		link = link.replace(' ', '-').replaceAll(/[^-\w]/, '')
-		link.toLowerCase()
 	}
 
 	void clear() {

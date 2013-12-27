@@ -2,5 +2,5 @@ package fr.gstraymond.script
 
 new BaseImporter(
 	clearConfigure: true,
-	host: 'card-search.gstraymond.fr'
+	host: 'engine.magic-card-search.com'
 ).launch()

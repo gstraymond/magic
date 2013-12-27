@@ -1,9 +1,11 @@
 package fr.gstraymond.script
 
+import static groovyx.gpars.GParsPool.*
+
 import java.util.concurrent.atomic.AtomicInteger
 
+import fr.gstraymond.card.picture.PictureDownloader
 import fr.gstraymond.elasticsearch.ESIndexer
-import groovyx.gpars.GParsPool
 
 class BaseImporter {
 	
@@ -52,10 +54,10 @@ class BaseImporter {
 			indexer.configure()
 			if (enableIndex) {
 				def counter = new AtomicInteger(0)
-				GParsPool.withPool(4) { 
+				withPool(4) { 
 					cards.eachParallel { card ->
 						counter++
-						
+						new PictureDownloader().download(card)
 						println "Indexing ${counter}/${cards.size()} : $card.title"
 						indexer.index card
 					}

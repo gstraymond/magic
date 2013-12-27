@@ -1,7 +1,9 @@
-import fr.gstraymond.scrap.card.constants.Edition
+package fr.gstraymond.script
+
+import fr.gstraymond.scrap.Scraper
 import groovy.json.JsonBuilder
 
-def scrapedCards = new fr.gstraymond.scrap.Scraper(
+def scrapedCards = new Scraper(
 	languages: ['en', 'fr']
 ).scrap()
 
