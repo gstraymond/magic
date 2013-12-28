@@ -2,21 +2,24 @@ package fr.gstraymond.card.picture
 
 import fr.gstraymond.card.MagicCard
 import fr.gstraymond.card.Publication
-import fr.gstraymond.card.tools.TitleNormalizer;
+import fr.gstraymond.card.tools.TitleNormalizer
 
 class PictureDownloader {
 	
-	def pictureLocation = '/media/guillaume/Data/Dropbox/Public/mtg/pics'
+	def pictureFolderLocation = 'mtg/pics'
+	def pictureLocation = "/media/guillaume/Data/Dropbox/Public/$pictureFolderLocation"
+	def pictureHost = "http://dl.dropboxusercontent.com/u/22449802/$pictureFolderLocation"
 
 	def download(MagicCard card) {
 		card.publications.each { Publication pub ->
-			def fileFolderName = "$pictureLocation/${pub.editionCode}"
+			def fileFolderName = "$pictureLocation/$pub.editionCode"
 			def fileFolder = new File(fileFolderName)
 			if (!fileFolder.exists())  {
 				fileFolder.mkdirs()
 			}
 			
-			def fileName = "${fileFolderName}/${formatTitle(card, pub)}"
+			def cardTitle = formatTitle(card, pub)
+			def fileName = "$fileFolderName/$cardTitle"
 			def file = new File(fileName)
 			if (!file.exists())  {
 				println "Downloading $pub.image to $fileName"
@@ -24,6 +27,9 @@ class PictureDownloader {
 					out << new URL(pub.image).openStream()
 				}
 			}
+			
+			// mis à jour du chemin
+			pub.image = "$pictureHost/$pub.editionCode/$cardTitle"
 		}
 	}
 
