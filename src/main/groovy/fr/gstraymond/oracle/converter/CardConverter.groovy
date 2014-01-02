@@ -89,19 +89,111 @@ class CardConverter extends CommonCardConverter {
 	void setRarity() {
 		card.rarities = scrapedCards*.rarity?.unique()
 	}
+	
+	def parseEditionRarity(editionRarity) {
+		editionRarity.split(',').collect { 
+			def edRar = it.trim().split('-')
+			def editionCode = edRar[0]
+			editionCode = translatedSets[editionCode] ?: editionCode
+			def edition = fr.gstraymond.oracle.card.constants.Edition.MAP[editionCode]
+			if (! edition) {
+				throw new Exception("No edition found for $editionCode ($rawCard.title)")
+			}
+			
+			[
+				editionCode: editionCode,
+				edition: edition,
+				rarityCode: edRar[1],
+			]
+		}
+	}
+	
+	def translatedSets = [
+		HL: 'HM',
+		AI: 'AL',
+		P1: 'PO',
+		S00 : 'P4',
+		S99 : 'P3',
+		UD : 'CG',
+		UL : 'GU',
+		US : 'UZ',
+		P3K : 'PK',
+		A : '1E',
+		B : '2E',
+		U : '2U',
+		RV : '3E'
+	]
 
 	void setPublications() {
+		def editionRarities = parseEditionRarity(rawCard.editionRarity)
 		def publications = scrapedCards.collect {
 			def pictureUrl = "http://magiccards.info/scans/en/${it.edition}/${it.collectorNumber}.jpg"
-			new Publication(
-				edition:  parseEdition(it.edition),
-				editionCode: it.edition,
-				rarity: it.rarity,
-				image: pictureUrl
-			)
+			def edition = parseEdition(it.edition)
+			
+			if (specialSets[it.edition]) {
+				new Publication(
+					edition:  edition,
+					editionCode: it.edition,
+					stdEditionCode: specialSets[it.edition],
+					rarity: it.rarity,
+					rarityCode: it.rarity[0].toUpperCase(),
+					image: pictureUrl
+				)
+			} else {
+				def editionRarity = editionRarities.find { it.edition == edition }
+				if (!editionRarity) {
+					println "No edition rarity found for card $rawCard.title with edition $edition and $editionRarities"
+				}
+				
+				new Publication(
+					edition:  edition,
+					editionCode: it.edition,
+					stdEditionCode: editionRarity?.editionCode,
+					rarity: it.rarity,
+					rarityCode: editionRarity?.rarityCode,
+					image: pictureUrl
+				)
+			}
 		}
 		card.publications = sortPublications(publications)
 	}
+	
+	def specialSets = [
+		med : 'MED',
+		me2 : 'ME2',
+		me3 : 'ME3',
+		me4 : 'ME4',
+		tsts : 'TSB',
+		mma: 'MMA',
+		br: 'BR',
+		bd: 'BD',
+		cma: 'CM1',
+		ddh: 'DDH',
+		dvd: 'DDC',
+		evg: 'EVG',
+		gvl: 'DDD',
+		ddl: 'DDL',
+		ddj: 'DDJ',
+		jvc: 'DD2',
+		ddf: 'DDF',
+		ddg: 'DDG',
+		pvc: 'DDE',
+		ddk: 'DDK',
+		ddi: 'DDI',
+		fvd: 'DRB',
+		fve: 'V09',
+		fvl: 'V11',
+		v12: 'V12',
+		fvr: 'V10',
+		v13: 'V13',
+		pc2: 'PC2',
+		pd2: 'PD2',
+		pd3: 'PD3',
+		pds: 'H09',
+		ug: 'UG',
+		uh: 'UNH',
+		st2k: 'P4'
+	]
 	
 	void setAbilities() {
 		Abilities.LIST.each {

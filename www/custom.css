@@ -82,3 +82,9 @@ strong.title {
 	position: relative;
 	top: 4px;
 }
+
+.rawPublications img {
+	position: relative;
+	top: 2px;
+	height: 20px;
+}

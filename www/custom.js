@@ -81,6 +81,10 @@ jQuery(document).ready(function($) {
 		    	},
 		 	    {
 		 	        "pre": "|",
+		        	"field": "publications.editionImage",
+		    	},
+		 	    {
+		 	        "pre": "|",
 		        	"field": "publications.image",
 			 	    "post": "</div>",
 		    	}
@@ -112,23 +116,35 @@ $(document).ajaxComplete(function() {
 		var editions = textSplit[0].split(',');
 		var rarities = textSplit[1].split(',');
 		var images = textSplit[2].split(',');
+		var editionImages = 'null';
+		if (textSplit.length == 4) {
+			editionImages = textSplit[2].split(',');
+			images = textSplit[3].split(',');
+		}
 		
 		var html = ''
 		var showMoreLink = false;
 		editions.forEach(function(element, index, array) {
 			var title = element + " - " + rarities[index];
 			var cssClass = '';
-			if (index > 9) {
+			if (index > 19) {
 				cssClass = ' hidden';
 				showMoreLink = true;
 			}
-			
-			html += "<div class='label label-important" + cssClass + "'>";
-			html += "<img src='img/pic.png' width='10px' /> ";
-			html += "<a title=\"" + title + "\" href='" + images[index] + "'>";
-			html += element; 
-			html += "</a>";
-			html += "</div> ";
+
+			if (! editionImages[index].contains('null')) {
+				html += "<div class='" + cssClass + "'>";
+				html += "<a title=\"" + title + "\" href='" + images[index] + "'>";
+				html += "<img src='" + editionImages[index] + "' alt='" + title + "'/> ";
+				html += "</a>";
+				html += "</div> ";
+			} else {
+				html += "<div class='label label-important" + cssClass + "'>";
+				html += "<a title=\"" + title + "\" href='" + images[index] + "'>";
+				html += element; 
+				html += "</a>";
+				html += "</div> ";
+			}
 		});
 		if (showMoreLink) {
 			html += "<div class='label label-warning showmore'>Show more ...</div>"
