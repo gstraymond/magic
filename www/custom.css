@@ -77,3 +77,8 @@ strong.title {
 .showmore {
 	cursor: pointer;
 }
+
+.google-play-logo {
+	position: relative;
+	top: 4px;
+}
