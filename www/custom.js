@@ -132,7 +132,7 @@ $(document).ajaxComplete(function() {
 				showMoreLink = true;
 			}
 
-			if (! editionImages[index].contains('null')) {
+			if (editionImages[index].indexOf('null') == -1) {
 				html += "<div class='" + cssClass + "'>";
 				html += "<a title=\"" + title + "\" href='" + images[index] + "'>";
 				html += "<img src='" + editionImages[index] + "' alt='" + title + "'/> ";
