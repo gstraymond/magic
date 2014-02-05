@@ -29,6 +29,7 @@ jQuery(document).ready(function($) {
 	        {'field': 'artists.exact',		'display': 'Artist'},
 	    ],
 	    paging: { size: 10 },
+	    pager_on_top: true,
 	    default_operator: "AND",
 	    sort: ['_uid'],
 	    result_display: [
