@@ -37,7 +37,11 @@ pre {
 }
 
 .fancybox-skin {
-	background: black;
+	background: transparent;
+}
+
+.fancybox-opened .fancybox-skin {	
+	box-shadow: 0 0 0;
 }
 
 strong.title {
@@ -71,6 +75,12 @@ strong.title {
 
 .disclaimer p {
 	font-size: 10px;
+}
+
+.thumbnail {
+	background: black;
+	padding: 2px;
+	border: 0;
 }
 
 .thumbnail,
