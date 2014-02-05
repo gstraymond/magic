@@ -102,6 +102,7 @@ class Edition {
 		DGM: 'Dragon\'s Maze',
 		
 		THS: 'Theros',
+		BNG: 'Born of the Gods',
 		
 		// Compilations / reprint sets
 		CH: 'Chronicles',
