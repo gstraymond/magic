@@ -196,10 +196,15 @@ class CardConverter extends CommonCardConverter {
 	]
 	
 	void setAbilities() {
-		Abilities.LIST.each {
-			if (abilityMatch(card.description, it)) {
-				card.abilities += it
+		if (card.description) {
+			Abilities.LIST.each {
+				if (abilityMatch(card.description, it)) {
+					card.abilities += it
+				}
 			}
+		} else if (card.type.toLowerCase().contains('creature')) {
+			// Vanilla creatures
+			card.abilities += 'Vanilla'
 		}
 	}
 	
