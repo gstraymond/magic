@@ -82,7 +82,8 @@ class ReleaseDate {
 		GTC:	'2013-02', //February 1, 2013	Gatecrash
 		DGM:	'2013-05', //May 3, 2013		Dragon's Maze
 		THS:	'2013-09', //September 27, 2013	Theros
-		BNG:	'2014-02', //February 7, 2014	Born of the Gods	
+		BNG:	'2014-02', //February 7, 2014	Born of the Gods
+		JOU:	'2014-04', //April 26, 2014		Journey into Nyx	
 		CH:		'1995-07', //July 1995			Chronicles[XVII]
 		AT:		'1998-11', //November 1998		Anthologies
 		BR:		'1999-11', //November 12, 1999	Battle Royale
@@ -103,6 +104,7 @@ class ReleaseDate {
 		DDJ:	'2012-09', //September 7, 2012	Duel Decks: Izzet vs. Golgari
 		DDK:	'2013-03', //March 15, 2013		Duel Decks: Sorin vs. Tibalt
 		DDL:	'2013-09', //September 6, 2013	Duel Decks: Heroes vs. Monsters
+		DDM:	'2014-03', //March 14, 2013		Duel Decks: Jace vs Vraska
 		FVD:	'2008-08', //August 29, 2008	From the Vault: Dragons
 		FVE:	'2009-08', //August 28, 2009	From the Vault: Exiled
 		FVR:	'2010-08', //August 27, 2010	From the Vault: Relics

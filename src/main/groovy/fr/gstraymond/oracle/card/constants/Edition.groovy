@@ -103,6 +103,7 @@ class Edition {
 		
 		THS: 'Theros',
 		BNG: 'Born of the Gods',
+		JOU: 'Journey into Nyx',
 		
 		// Compilations / reprint sets
 		CH: 'Chronicles',

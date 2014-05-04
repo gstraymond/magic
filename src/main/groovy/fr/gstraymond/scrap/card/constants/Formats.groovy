@@ -17,7 +17,7 @@ class Formats {
 		// Theros block (Theros, Born of the Gods [effective February 7, 2014], Journey Into Nyx [effective May 2, 2014])
 		'ths',
 		'bng',
-		'jin',
+		'jou',
 		]
 	)
 
