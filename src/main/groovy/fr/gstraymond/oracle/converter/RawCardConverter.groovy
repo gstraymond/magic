@@ -8,7 +8,6 @@ class RawCardConverter {
 	List cardAsString
 	RawCard rawCard = new RawCard()
 	
-	@Override
 	RawCard parse() {
 		if (! cardAsString) {
 			rawCard = null

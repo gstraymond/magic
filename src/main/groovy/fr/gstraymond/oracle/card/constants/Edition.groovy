@@ -19,6 +19,7 @@ class Edition {
 		M12: 'Magic 2012',
 		M13: 'Magic 2013',
 		M14: 'Magic 2014 Core Set',
+		M15: 'Magic 2015',
 		// Expansion sets
 		AN: 'Arabian Nights',
 		AQ: 'Antiquities',
@@ -111,6 +112,9 @@ class Edition {
 		HOP: 'Planechase',
 		PC2: 'Planechase 2012',
 		MMA: 'Modern Masters',
+		
+		// Conspiray
+		CNS: 'Conspiracy',
 		
 		// Commander
 		CMD: 'Commander',

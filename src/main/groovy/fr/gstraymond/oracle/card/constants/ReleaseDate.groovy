@@ -19,6 +19,7 @@ class ReleaseDate {
 		M12:	'2011-07', //July 15, 2011		Magic 2012
 		M13:	'2012-07', //July 13, 2012		Magic 2013
 		M14:	'2013-07', //July 19, 2013		Magic 2014
+		M15:	'2014-07', //July 18, 2014		Magic 2015
 		AN:		'1993-12', //December 1993		Arabian Nights
 		AQ:		'1994-03', //March 1994			Antiquities
 		LG:		'1994-06', //June 1994			Legends
@@ -129,6 +130,7 @@ class ReleaseDate {
 		ME2:	'2008-09', // MTGO Masters Edition II
 		ME3:	'2009-09', // MTGO Masters Edition III
 		ME4:	'2011-01', // MTGO Masters Edition IV
+		VMA:	'2014-06', // Vintage Masters
 		CED:	'1993-12', // Collector's edition
 		CEDI:	'1993-12', // Collector's edition
 		PCH:	'2009-09', // Planechase
@@ -142,6 +144,8 @@ class ReleaseDate {
 		'8EB':	'2003-07', // Eighth Edition Box Set
 		UG: 	'1998-08', // Unglued
 		UH: 	'2004-11', // Unhinged
+		CNS: 	'2014-06', // Conspiracy
+		MD1: 	'2014-05', // Modern Event Deck
 		
 		FNMP:	'2099-12', // Friday Night Magic
 		PTC: 	'2099-12', // Pre-release events
