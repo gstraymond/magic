@@ -84,7 +84,8 @@ class ReleaseDate {
 		DGM:	'2013-05', //May 3, 2013		Dragon's Maze
 		THS:	'2013-09', //September 27, 2013	Theros
 		BNG:	'2014-02', //February 7, 2014	Born of the Gods
-		JOU:	'2014-04', //April 26, 2014		Journey into Nyx	
+		JOU:	'2014-04', //April 26, 2014		Journey into Nyx
+        KTK:    '2014-09', //                   Khans of Tarkir
 		CH:		'1995-07', //July 1995			Chronicles[XVII]
 		AT:		'1998-11', //November 1998		Anthologies
 		BR:		'1999-11', //November 12, 1999	Battle Royale
@@ -106,12 +107,14 @@ class ReleaseDate {
 		DDK:	'2013-03', //March 15, 2013		Duel Decks: Sorin vs. Tibalt
 		DDL:	'2013-09', //September 6, 2013	Duel Decks: Heroes vs. Monsters
 		DDM:	'2014-03', //March 14, 2013		Duel Decks: Jace vs Vraska
+        DDN:    '2014-09', //                   Duel Decks: Speed vs. Cunning
 		FVD:	'2008-08', //August 29, 2008	From the Vault: Dragons
 		FVE:	'2009-08', //August 28, 2009	From the Vault: Exiled
 		FVR:	'2010-08', //August 27, 2010	From the Vault: Relics
 		FVL:	'2011-08', //August 26, 2011	From the Vault: Legends
 		V12:	'2012-08', //August 31, 2012	From the Vault: Realms
-		V13:	'2013-08', //August 23, 2013	From the Vault: Twenty
+        V13:	'2013-08', //August 23, 2013	From the Vault: Twenty
+        V14:	'2014-08', //                   From the Vault: Annihilation
 		PDS:	'2009-11', //November 20, 2009	Premium Deck Series: Slivers
 		PD2:	'2010-11', //November 19, 2010	Premium Deck Series: Fire and Lightning
 		PD3:	'2011-11', //November 18, 2011	Premium Deck Series: Graveborn
@@ -146,7 +149,7 @@ class ReleaseDate {
 		UH: 	'2004-11', // Unhinged
 		CNS: 	'2014-06', // Conspiracy
 		MD1: 	'2014-05', // Modern Event Deck
-		
+
 		FNMP:	'2099-12', // Friday Night Magic
 		PTC: 	'2099-12', // Pre-release events
 		PRO: 	'2099-12', // Pro Tour

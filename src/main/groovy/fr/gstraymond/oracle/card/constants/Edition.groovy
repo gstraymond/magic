@@ -115,6 +115,9 @@ class Edition {
 		
 		// Conspiray
 		CNS: 'Conspiracy',
+
+       // Khans of Tarkir Cycle/Block
+        KTK: 'Khans of Tarkir',
 		
 		// Commander
 		CMD: 'Commander',

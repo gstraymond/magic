@@ -4,7 +4,7 @@ import fr.gstraymond.oracle.importer.Importer
 def path = 'src/main/resources/oracle/'
 
 /** from http://www.yawgatog.com/resources/oracle/ */
-def fileName = 'All Sets-2014-07-28.txt' 
+def fileName = 'All Sets-2014-09-26.txt'
 //def fileName = 'test.txt'
 
 new BaseImporter( 

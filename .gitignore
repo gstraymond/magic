@@ -5,3 +5,7 @@
 /.settings
 /misc/scripts.txt
 /build
+.idea/
+gradle/
+gradlew
+magicimporter.iml

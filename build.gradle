@@ -19,7 +19,7 @@ task configure (dependsOn: 'classes', type: JavaExec) {
 }
 
 task oracleImporter (dependsOn: 'classes', type: JavaExec) {
-	description = 'MAGIC IMPORTER : index les données de l\'oracle'
+	description = 'MAGIC IMPORTER : indexe les données de l\'oracle'
 	main = 'fr.gstraymond.script.OracleImporter'
 	classpath = sourceSets.main.runtimeClasspath
 }
