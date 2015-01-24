@@ -85,7 +85,8 @@ class ReleaseDate {
 		THS:	'2013-09', //September 27, 2013	Theros
 		BNG:	'2014-02', //February 7, 2014	Born of the Gods
 		JOU:	'2014-04', //April 26, 2014		Journey into Nyx
-        KTK:    '2014-09', //                   Khans of Tarkir
+		KTK:    '2014-09', //                   Khans of Tarkir
+		FRF:    '2015-01', //                   Fate Reforged
 		CH:		'1995-07', //July 1995			Chronicles[XVII]
 		AT:		'1998-11', //November 1998		Anthologies
 		BR:		'1999-11', //November 12, 1999	Battle Royale
@@ -122,7 +123,8 @@ class ReleaseDate {
 		PC2:	'2012-06', //June 1, 2012		Planechase (2012 Edition)
 		CMD:	'2011-06', //June 17, 2011		Commander
 		CMA:	'2012-11', //November 2, 2012	Commander's Arsenal
-		C13:	'2013-11', //November 1, 2013	Commander (2013 Edition)	
+		C13:	'2013-11', //November 1, 2013	Commander (2013 Edition)
+		C14:	'2014-11', //November 7, 2014	Commander (2014 Edition)
 		PO:		'1997-06', //June 1997			Portal
 		PO2:	'1998-06', //June 1998			Portal Second Age
 		P3K:	'1999-05', //May 1999			Portal Three Kingdoms

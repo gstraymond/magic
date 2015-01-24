@@ -117,11 +117,13 @@ class Edition {
 		CNS: 'Conspiracy',
 
        // Khans of Tarkir Cycle/Block
-        KTK: 'Khans of Tarkir',
+		KTK: 'Khans of Tarkir',
+		FRF: 'Fate Reforged',
 		
 		// Commander
 		CMD: 'Commander',
 		C13: 'Commander 2013 Edition',
+		C14: 'Commander 2014 Edition',
 		
 		PROMO: 'Promotional Cards',
 		
