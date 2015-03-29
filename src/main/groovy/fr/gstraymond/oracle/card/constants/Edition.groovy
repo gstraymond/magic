@@ -119,6 +119,7 @@ class Edition {
        // Khans of Tarkir Cycle/Block
 		KTK: 'Khans of Tarkir',
 		FRF: 'Fate Reforged',
+		DTK: 'Dragons of Tarkir',
 		
 		// Commander
 		CMD: 'Commander',

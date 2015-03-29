@@ -87,6 +87,8 @@ class ReleaseDate {
 		JOU:	'2014-04', //April 26, 2014		Journey into Nyx
 		KTK:    '2014-09', //                   Khans of Tarkir
 		FRF:    '2015-01', //                   Fate Reforged
+		DTK:    '2015-03', //                   Dragons of Tarkir
+
 		CH:		'1995-07', //July 1995			Chronicles[XVII]
 		AT:		'1998-11', //November 1998		Anthologies
 		BR:		'1999-11', //November 12, 1999	Battle Royale
@@ -108,7 +110,8 @@ class ReleaseDate {
 		DDK:	'2013-03', //March 15, 2013		Duel Decks: Sorin vs. Tibalt
 		DDL:	'2013-09', //September 6, 2013	Duel Decks: Heroes vs. Monsters
 		DDM:	'2014-03', //March 14, 2013		Duel Decks: Jace vs Vraska
-        DDN:    '2014-09', //                   Duel Decks: Speed vs. Cunning
+		DDN:    '2014-09', //                   Duel Decks: Speed vs. Cunning
+		DDO:    '2015-02', //                   Duel Decks: Elspeth vs. Kiora
 		FVD:	'2008-08', //August 29, 2008	From the Vault: Dragons
 		FVE:	'2009-08', //August 28, 2009	From the Vault: Exiled
 		FVR:	'2010-08', //August 27, 2010	From the Vault: Relics
