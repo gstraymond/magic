@@ -204,7 +204,7 @@ abstract class CommonCardConverter {
 			formatMatch = format.bannedCards.count { title.equals(it) } == 0
 		}
 		
-		formatMatch
+		format.include ? formatMatch : !formatMatch
 	}
 	
 }

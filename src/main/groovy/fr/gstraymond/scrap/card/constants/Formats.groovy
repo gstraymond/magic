@@ -8,17 +8,16 @@ class Formats {
 	static Format STANDARD = new Format(
 	name: 'Standard',
 	sets: [
-		// Return to Ravnica block (Return to Ravnica, Gatecrash, Dragon's Maze)
-		'rtr',
-		'gtc',
-		'dgm',
-		'm14',
-		
-		// Theros block (Theros, Born of the Gods [effective February 7, 2014], Journey Into Nyx [effective May 2, 2014])
-		'ths',
-		'bng',
-		'jou',
+		'dtk',
+		'frf',
+		'ktk',
+
 		'm15',
+
+		// Theros block (Theros, Born of the Gods [effective February 7, 2014], Journey Into Nyx [effective May 2, 2014])
+		'jou',
+		'bng',
+		'ths',
 		]
 	)
 
@@ -37,11 +36,18 @@ class Formats {
 		'dka',
 		'avr',
 		'm13',
-		]
-	+ STANDARD.sets,
+
+		// Return to Ravnica block (Return to Ravnica, Gatecrash, Dragon's Maze)
+		'rtr',
+		'gtc',
+		'dgm',
+		'm14',
+
+		'ths',
+		],
 	bannedCards: [
-		'Ponder',
 		'Mental Misstep',
+		'Ponder',
 		]
 	)
 
@@ -92,19 +98,21 @@ class Formats {
 		'roe',
 		'm11',
 	]
+	+ STANDARD.sets
 	+ EXTENDED.sets,
 	bannedCards: [
 		'Ancestral Vision',
 		'Ancient Den',
-		'Bitterblossom',
+		'Birthing Pod',
 		'Blazing Shoal',
 		'Bloodbraid Elf',
 		'Chrome Mox',
 		'Cloudpost',
 		'Dark Depths',
+		'Deathrite Shaman',
+		'Dig Through Time',
 		'Dread Return',
 		'Glimpse of Nature',
-		'Golgari Grave-Troll',
 		'Great Furnace',
 		'Green Sun\'s Zenith',
 		'Hypergenesis',
@@ -121,6 +129,7 @@ class Formats {
 		'Stoneforge Mystic',
 		'Skullclamp',
 		'Sword of the Meek',
+		'Treasure Cruise',
 		'Tree of Tales',
 		'Umezawa\'s Jitte',
 		'Vault of Whispers',
@@ -196,11 +205,11 @@ class Formats {
 		'Timmerian Fiends',
 		'Tinker',
 		'Tolarian Academy',
+		'Treasure Cruise',
 		'Unexpected Potential',
 		'Vampiric Tutor',
 		'Wheel of Fortune',
 		'Windfall',
-		'Worldgorger Dragon',
 		'Worldknit',
 		'Yawgmoth\'s Bargain',
 		'Yawgmoth\'s Will',
@@ -238,11 +247,80 @@ class Formats {
 		'Worldknit',
 	])
 
+
+	// http://www.wizards.com/Magic/TCG/Resources.aspx?x=judge/resources/sfrvintage
+	static Format RESTRICTED = new Format(
+	name: 'Restricted',
+	include: false,
+	bannedCards: [
+		'Ancestral Recall',
+		'Balance',
+
+		'Black Lotus',
+		'Brainstorm',
+
+		'Channel',
+		'Demonic Consultation',
+
+		'Demonic Tutor',
+		'Fastbond',
+
+		'Flash',
+		'Imperial Seal',
+
+		'Library of Alexandria',
+		'Lion\'s Eye Diamond',
+
+		'Lotus Petal',
+		'Mana Crypt',
+
+		'Mana Vault',
+		'Memory Jar',
+
+		'Merchant Scroll',
+		'Mind\'s Desire',
+
+		'Mox Emerald',
+		'Mox Jet',
+
+		'Mox Pearl',
+		'Mox Ruby',
+
+		'Mox Sapphire',
+		'Mystical Tutor',
+
+		'Necropotence',
+		'Ponder',
+
+		'Sol Ring',
+		'Strip Mine',
+
+		'Thirst for Knowledge',
+		'Time Vault',
+
+		'Time Walk',
+		'Timetwister',
+
+		'Tinker',
+		'Tolarian Academy',
+
+		'Treasure Cruise',
+		'Trinisphere',
+
+		'Vampiric Tutor',
+		'Wheel of Fortune',
+
+		'Windfall',
+		'Yawgmoth\'s Bargain',
+
+		'Yawgmoth\'s Will'
+	])
 	static ALL = [
 		STANDARD,
 		EXTENDED,
 		MODERN,
 		LEGACY,
-		VINTAGE
+		VINTAGE,
+		RESTRICTED
 	]
 }

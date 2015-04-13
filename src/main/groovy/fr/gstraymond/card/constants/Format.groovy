@@ -5,5 +5,5 @@ class Format {
 	String name
 	List sets
 	List bannedCards
-	
+	Boolean include = true
 }
