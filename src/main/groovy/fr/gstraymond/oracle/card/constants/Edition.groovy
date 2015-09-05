@@ -116,6 +116,8 @@ class Edition {
 		// Conspiray
 		CNS: 'Conspiracy',
 
+		ORI: 'Magic Origins',
+
        // Khans of Tarkir Cycle/Block
 		KTK: 'Khans of Tarkir',
 		FRF: 'Fate Reforged',

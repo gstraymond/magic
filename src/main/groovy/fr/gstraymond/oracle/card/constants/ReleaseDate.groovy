@@ -154,6 +154,13 @@ class ReleaseDate {
 		UH: 	'2004-11', // Unhinged
 		CNS: 	'2014-06', // Conspiracy
 		MD1: 	'2014-05', // Modern Event Deck
+		MM2: 	'2015-05', // Modern Masters 2015 Edition
+		DDAJVC:	'2014-12', // Duel Decks Anthology: Jace vs. Chandra
+		DDADVD: '2014-12', // Duel Decks Anthology: Divine vs. Demonic
+		DDAEVG: '2014-12', // Duel Decks Anthology: Elves vs. Goblins
+		DDAGVL: '2014-12', // Duel Decks Anthology: Garruk vs. Liliana
+		ORI:    '2015-07', // Magic Origins
+		CLASH:  '2014-03', // Clash pack
 
 		FNMP:	'2099-12', // Friday Night Magic
 		PTC: 	'2099-12', // Pre-release events
