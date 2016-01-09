@@ -88,6 +88,7 @@ class ReleaseDate {
 		KTK:    '2014-09', //                   Khans of Tarkir
 		FRF:    '2015-01', //                   Fate Reforged
 		DTK:    '2015-03', //                   Dragons of Tarkir
+		BFZ:    '2015-09', //                   Battle for Zendikar
 
 		CH:		'1995-07', //July 1995			Chronicles[XVII]
 		AT:		'1998-11', //November 1998		Anthologies
@@ -112,13 +113,15 @@ class ReleaseDate {
 		DDM:	'2014-03', //March 14, 2013		Duel Decks: Jace vs Vraska
 		DDN:    '2014-09', //                   Duel Decks: Speed vs. Cunning
 		DDO:    '2015-02', //                   Duel Decks: Elspeth vs. Kiora
+		DDP:    '2015-08', //                   Duel Decks: Zendikar vs. Eldrazi
 		FVD:	'2008-08', //August 29, 2008	From the Vault: Dragons
 		FVE:	'2009-08', //August 28, 2009	From the Vault: Exiled
 		FVR:	'2010-08', //August 27, 2010	From the Vault: Relics
 		FVL:	'2011-08', //August 26, 2011	From the Vault: Legends
 		V12:	'2012-08', //August 31, 2012	From the Vault: Realms
         V13:	'2013-08', //August 23, 2013	From the Vault: Twenty
-        V14:	'2014-08', //                   From the Vault: Annihilation
+		V14:	'2014-08', //                   From the Vault: Annihilation
+		V15:	'2015-08', //                   From the Vault: Angels
 		PDS:	'2009-11', //November 20, 2009	Premium Deck Series: Slivers
 		PD2:	'2010-11', //November 19, 2010	Premium Deck Series: Fire and Lightning
 		PD3:	'2011-11', //November 18, 2011	Premium Deck Series: Graveborn
@@ -128,6 +131,7 @@ class ReleaseDate {
 		CMA:	'2012-11', //November 2, 2012	Commander's Arsenal
 		C13:	'2013-11', //November 1, 2013	Commander (2013 Edition)
 		C14:	'2014-11', //November 7, 2014	Commander (2014 Edition)
+		C15:	'2015-11', //November 13, 2015	Commander (2015 Edition)
 		PO:		'1997-06', //June 1997			Portal
 		PO2:	'1998-06', //June 1998			Portal Second Age
 		P3K:	'1999-05', //May 1999			Portal Three Kingdoms
@@ -139,6 +143,7 @@ class ReleaseDate {
 		ME3:	'2009-09', // MTGO Masters Edition III
 		ME4:	'2011-01', // MTGO Masters Edition IV
 		VMA:	'2014-06', // Vintage Masters
+		TPR:	'2015-05', // Tempest remastered
 		CED:	'1993-12', // Collector's edition
 		CEDI:	'1993-12', // Collector's edition
 		PCH:	'2009-09', // Planechase
@@ -161,6 +166,8 @@ class ReleaseDate {
 		DDAGVL: '2014-12', // Duel Decks Anthology: Garruk vs. Liliana
 		ORI:    '2015-07', // Magic Origins
 		CLASH:  '2014-03', // Clash pack
+		UGIN: 	'2015-01', // Ugin's fate
+		EXP: 	'2015-09', // Zendikar expeditions
 
 		FNMP:	'2099-12', // Friday Night Magic
 		PTC: 	'2099-12', // Pre-release events

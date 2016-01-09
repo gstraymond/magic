@@ -4,53 +4,45 @@ import fr.gstraymond.card.constants.Format;
 
 class Formats {
 
+    // http://mtgsalvation.gamepedia.com/Standard
 	// http://www.wizards.com/Magic/TCG/Resources.aspx?x=judge/resources/sfrstandard
 	static Format STANDARD = new Format(
 	name: 'Standard',
 	sets: [
+	    'bfz',
+
+        'm15',
+
 		'dtk',
 		'frf',
 		'ktk',
-
-		'm15',
-
-		// Theros block (Theros, Born of the Gods [effective February 7, 2014], Journey Into Nyx [effective May 2, 2014])
-		'jou',
-		'bng',
-		'ths',
 		]
 	)
 
+    // http://mtgsalvation.gamepedia.com/Extended
 	// http://www.wizards.com/Magic/TCG/Resources.aspx?x=judge/resources/sfrextended
 	static Format EXTENDED = new Format(
 	name: 'Extended',
 	sets: [
-		// Scars of Mirrodin block (Scars of Mirrodin, Mirrodin Besieged, New Phyrexia)
-		'som',
-		'mbs',
-		'nph',
-		'm12',
-		
-		// Innistrad-Avacyn Restored block (Innistrad, Dark Ascension, Avacyn Restored)
-		'isd',
-		'dka',
-		'avr',
-		'm13',
-
 		// Return to Ravnica block (Return to Ravnica, Gatecrash, Dragon's Maze)
 		'rtr',
 		'gtc',
 		'dgm',
 		'm14',
 
+		// Theros block (Theros, Born of the Gods [effective February 7, 2014], Journey Into Nyx [effective May 2, 2014])
+		'jou',
+		'bng',
 		'ths',
-		],
+    ]
+    + STANDARD.sets,
 	bannedCards: [
 		'Mental Misstep',
 		'Ponder',
-		]
+    ]
 	)
 
+    // http://mtgsalvation.gamepedia.com/Modern
 	// https://www.wizards.com/magic/tcg/resources.aspx?x=judge/resources/sfrmodern
 	static Format MODERN = new Format(
 	name: 'Modern',
@@ -97,8 +89,19 @@ class Formats {
 		'wwk',
 		'roe',
 		'm11',
+
+        // Scars of Mirrodin block (Scars of Mirrodin, Mirrodin Besieged, New Phyrexia)
+        'som',
+        'mbs',
+        'nph',
+        'm12',
+
+        // Innistrad-Avacyn Restored block (Innistrad, Dark Ascension, Avacyn Restored)
+        'isd',
+        'dka',
+        'avr',
+        'm13',
 	]
-	+ STANDARD.sets
 	+ EXTENDED.sets,
 	bannedCards: [
 		'Ancestral Vision',
@@ -136,86 +139,7 @@ class Formats {
 		]
 	)
 
-	// http://www.wizards.com/Magic/TCG/Resources.aspx?x=judge/resources/sfrlegacy
-	static Format LEGACY = new Format(
-	name: 'Legacy',
-	bannedCards: [
-		'Advantageous Proclamation',
-		'Amulet of Quoz',
-		'Ancestral Recall',
-		'Backup Plan',
-		'Balance',
-		'Bazaar of Baghdad',
-		'Black Lotus',
-		'Black Vise',
-		'Brago\'s Favor',
-		'Bronze Tablet',
-		'Channel',
-		'Chaos Orb',
-		'Contract from Below',
-		'Darkpact',
-		'Demonic Attorney',
-		'Demonic Consultation',
-		'Demonic Tutor',
-		'Double Stroke',
-		'Earthcraft',
-		'Falling Star',
-		'Fastbond',
-		'Flash',
-		'Frantic Search',
-		'Goblin Recruiter',
-		'Gush',
-		'Hermit Druid',
-		'Immediate Action',
-		'Imperial Seal',
-		'Iterative Analysis',
-		'Jeweled Bird',
-		'Library of Alexandria',
-		'Mana Crypt',
-		'Mana Drain',
-		'Mana Vault',
-		'Memory Jar',
-		'Mental Misstep',
-		'Mind Twist',
-		'Mind\'s Desire',
-		'Mishra\'s Workshop',
-		'Mox Emerald',
-		'Mox Jet',
-		'Mox Pearl',
-		'Mox Ruby',
-		'Mox Sapphire',
-		'Muzzio\'s Preparations',
-		'Mystical Tutor',
-		'Necropotence',
-		'Oath of Druids',
-		'Power Play',
-		'Rebirth',
-		'Secret Summoning',
-		'Secrets of Paradise',
-		'Sentinel Dispatch',
-		'Shahrazad',
-		'Skullclamp',
-		'Sol Ring',
-		'Strip Mine',
-		'Survival of the Fittest',
-		'Tempest Efreet',
-		'Time Vault',
-		'Time Walk',
-		'Timetwister',
-		'Timmerian Fiends',
-		'Tinker',
-		'Tolarian Academy',
-		'Treasure Cruise',
-		'Unexpected Potential',
-		'Vampiric Tutor',
-		'Wheel of Fortune',
-		'Windfall',
-		'Worldknit',
-		'Yawgmoth\'s Bargain',
-		'Yawgmoth\'s Will',
-		]
-	)
-
+    // http://mtgsalvation.gamepedia.com/Vintage
 	// http://www.wizards.com/Magic/TCG/Resources.aspx?x=judge/resources/sfrvintage
 	static Format VINTAGE = new Format(
 	name: 'Vintage',
@@ -247,6 +171,61 @@ class Formats {
 		'Worldknit',
 	])
 
+    // http://mtgsalvation.gamepedia.com/Legacy
+    // http://www.wizards.com/Magic/TCG/Resources.aspx?x=judge/resources/sfrlegacy
+    static Format LEGACY = new Format(
+            name: 'Legacy',
+            bannedCards: [
+                    'Ancestral Recall',
+                    'Balance',
+                    'Bazaar of Baghdad',
+                    'Black Lotus',
+                    'Channel',
+                    'Demonic Consultation',
+                    'Dig Through Time',
+                    'Demonic Tutor',
+                    'Earthcraft',
+                    'Fastbond',
+                    'Flash',
+                    'Frantic Search',
+                    'Goblin Recruiter',
+                    'Gush',
+                    'Hermit Druid',
+                    'Imperial Seal',
+                    'Library of Alexandria',
+                    'Mana Crypt',
+                    'Mana Drain',
+                    'Mana Vault',
+                    'Memory Jar',
+                    'Mental Misstep',
+                    'Mind Twist',
+                    'Mind\'s Desire',
+                    'Mishra\'s Workshop',
+                    'Mox Emerald',
+                    'Mox Jet',
+                    'Mox Pearl',
+                    'Mox Ruby',
+                    'Mox Sapphire',
+                    'Mystical Tutor',
+                    'Necropotence',
+                    'Oath of Druids',
+                    'Skullclamp',
+                    'Sol Ring',
+                    'Strip Mine',
+                    'Survival of the Fittest',
+                    'Time Vault',
+                    'Time Walk',
+                    'Timetwister',
+                    'Tinker',
+                    'Tolarian Academy',
+                    'Treasure Cruise',
+                    'Vampiric Tutor',
+                    'Wheel of Fortune',
+                    'Windfall',
+                    'Yawgmoth\'s Bargain',
+                    'Yawgmoth\'s Will',
+            ] + VINTAGE.bannedCards
+    )
 
 	// http://www.wizards.com/Magic/TCG/Resources.aspx?x=judge/resources/sfrvintage
 	static Format RESTRICTED = new Format(
@@ -255,64 +234,45 @@ class Formats {
 	bannedCards: [
 		'Ancestral Recall',
 		'Balance',
-
 		'Black Lotus',
 		'Brainstorm',
-
+        'Chalice of the Void',
 		'Channel',
 		'Demonic Consultation',
-
 		'Demonic Tutor',
+        'Dig Through Time',
 		'Fastbond',
-
 		'Flash',
 		'Imperial Seal',
-
 		'Library of Alexandria',
 		'Lion\'s Eye Diamond',
-
 		'Lotus Petal',
 		'Mana Crypt',
-
 		'Mana Vault',
 		'Memory Jar',
-
 		'Merchant Scroll',
 		'Mind\'s Desire',
-
 		'Mox Emerald',
 		'Mox Jet',
-
 		'Mox Pearl',
 		'Mox Ruby',
-
 		'Mox Sapphire',
 		'Mystical Tutor',
-
 		'Necropotence',
 		'Ponder',
-
 		'Sol Ring',
 		'Strip Mine',
-
-		'Thirst for Knowledge',
 		'Time Vault',
-
 		'Time Walk',
 		'Timetwister',
-
 		'Tinker',
 		'Tolarian Academy',
-
 		'Treasure Cruise',
 		'Trinisphere',
-
 		'Vampiric Tutor',
 		'Wheel of Fortune',
-
 		'Windfall',
 		'Yawgmoth\'s Bargain',
-
 		'Yawgmoth\'s Will'
 	])
 	static ALL = [

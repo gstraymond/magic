@@ -122,11 +122,13 @@ class Edition {
 		KTK: 'Khans of Tarkir',
 		FRF: 'Fate Reforged',
 		DTK: 'Dragons of Tarkir',
+		BFZ: 'Battle for Zendikar',
 		
 		// Commander
 		CMD: 'Commander',
 		C13: 'Commander 2013 Edition',
 		C14: 'Commander 2014 Edition',
+		C15: 'Commander 2015 Edition',
 		
 		PROMO: 'Promotional Cards',
 		

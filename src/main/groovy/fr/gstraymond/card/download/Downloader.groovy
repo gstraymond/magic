@@ -17,12 +17,16 @@ class Downloader {
 		// existence du fichier
 		def fileName = "$folderPath/$title"
 		def file = new File(fileName)
-		if (!file.exists())  {
-			// téléchargement 
-			println "Downloading $url to $fileName"
-			file.withOutputStream { out ->
-				out << new URL(url).openStream()
-			}
-		}
+		try {
+            if (!file.exists()) {
+                // téléchargement
+                println "Downloading $url to $fileName"
+                file.withOutputStream { out ->
+                    out << new URL(url).openStream()
+                }
+            }
+        } catch (FileNotFoundException e) {
+            println "Unable to download $url $e"
+        }
 	}
 }
